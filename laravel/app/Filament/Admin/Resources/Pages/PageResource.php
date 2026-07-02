@@ -1,0 +1,66 @@
+<?php
+
+namespace App\Filament\Admin\Resources\Pages;
+
+use App\Filament\Admin\Resources\Pages\Pages\CreatePage;
+use App\Filament\Admin\Resources\Pages\Pages\EditPage;
+use App\Filament\Admin\Resources\Pages\Pages\ListPages;
+use App\Filament\Admin\Resources\Pages\Schemas\PageForm;
+use App\Filament\Admin\Resources\Pages\Tables\PagesTable;
+use App\Models\Page;
+use BackedEnum;
+use Filament\Resources\Resource;
+use Filament\Schemas\Schema;
+use Filament\Support\Icons\Heroicon;
+use Filament\Tables\Table;
+
+
+class PageResource extends Resource
+{
+    protected static ?string $model = Page::class;
+
+    protected static ?string $navigationLabel = 'Страницы';
+
+    protected static ?string $modelLabel = 'Страница';
+
+    protected static ?string $pluralModelLabel = 'Страницы';
+
+    protected static string|null|\UnitEnum $navigationGroup = '📄 Контент';
+
+    protected static ?int $navigationSort = 1;
+
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedDocumentText;
+
+    protected static ?string $recordTitleAttribute = 'Pages';
+
+    public static function form(Schema $schema): Schema
+    {
+        return PageForm::configure($schema);
+    }
+
+    public static function table(Table $table): Table
+    {
+        return PagesTable::configure($table);
+    }
+
+    public static function getRelations(): array
+    {
+        return [
+            //
+        ];
+    }
+
+    public static function getPages(): array
+    {
+        return [
+            'index' => ListPages::route('/'),
+            'create' => CreatePage::route('/create'),
+            'edit' => EditPage::route('/{record}/edit'),
+        ];
+    }
+
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
+    }
+}

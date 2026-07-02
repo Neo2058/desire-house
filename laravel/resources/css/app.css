@@ -1,0 +1,8 @@
+@import "./base.css";
+@import "./layout.css";
+
+@import "./blocks/hero.css";
+@import "./blocks/services.css";
+@import "./blocks/projects.css";
+@import "./blocks/gallery.css";
+@import "./blocks/footer.css";

@@ -1,0 +1,192 @@
+.hero {
+    position: relative;
+    min-height: 100vh;
+    background-size: cover;
+    overflow: hidden;
+}
+
+.hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,.65);
+}
+
+.container {
+    width: min(1280px, calc(100% - 40px));
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+/* ====================== ШАПКА ====================== */
+.hero__header {
+    position: absolute;
+    left: 0; top: 0;
+    width: 100%;
+    z-index: 20;
+    background: rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(6px);
+}
+
+.hero__header-container {
+    height: 90px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Логотип */
+.hero__logo img {
+    width: 160px;
+    height: auto;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5));
+}
+
+/* Меню */
+.hero__menu {
+    display: flex;
+    gap: 45px;
+}
+
+.hero__menu a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    transition: .25s;
+}
+
+.hero__menu a:hover {
+    color: #f26b1d;
+}
+
+/* ====================== КОНТЕНТ ====================== */
+.hero__content {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 520px;
+    align-items: end;
+    gap: 40px;
+}
+
+.hero__left {
+    padding-bottom: 80px;
+    max-width: 720px;
+}
+
+.hero__subtitle { margin-bottom: 20px; color: #f26b1d; text-transform: uppercase; letter-spacing: .3em; font-size: 18px; font-weight: 600; }
+
+.hero__title {
+    margin: 0 0 25px 0;
+    color: #fff;
+    font-size: 68px;
+    line-height: 1.05;
+    text-transform: uppercase;
+    font-weight: 800;
+}
+
+.hero__description {
+    margin-top: 30px;
+    color: #d4d4d4;
+    font-size: 20px;
+    line-height: 1.6;
+}
+
+/* Кнопка */
+.hero__button {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 50px;
+    padding: 18px 42px;
+    background: #f26b1d;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 16px;
+    border-radius: 50px;
+    transition: all .4s ease;
+}
+
+.hero__button:hover { background: #ff7d2d; transform: translateY(-3px); }
+
+.hero__button::after {
+    content: '→';
+    font-size: 22px;
+    animation: arrowMove 1.8s infinite ease-in-out;
+}
+
+@keyframes arrowMove {
+    0% { transform: translateX(0); }
+    50% { transform: translateX(8px); }
+    100% { transform: translateX(0); }
+}
+
+/* Картинка справа */
+.hero__right {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.hero__right img {
+    width: 350px;
+    max-width: 100%;
+    height: auto;
+}
+
+/* ====================== АДАПТИВ ====================== */
+@media (max-width: 1100px) {
+    .hero__content {
+        display: block;
+        text-align: center;
+        gap: 60px;
+    }
+
+    .hero__left {
+        margin: 0 auto;
+        padding-top: 160px;
+        padding-bottom: 40px;
+    }
+
+    .hero__right {
+        order: -1;           /* перемещаем картинку наверх */
+        margin: 0 auto;
+    }
+
+    .hero__right img {
+        width: 300px;
+    }
+
+    .hero__menu, .hero__contacts {
+        display: none;
+    }
+}
+
+/* Маленькие экраны */
+@media (max-width: 480px) {
+    .hero__title {
+        font-size: 42px;
+        line-height: 1.1;
+    }
+
+    .hero__description {
+        font-size: 18px;
+    }
+
+    .hero__left {
+        padding-top: 140px;
+        padding-bottom: 40px;
+    }
+
+    .hero__right img {
+        width: 260px;
+    }
+
+    .hero__button {
+        padding: 16px 32px;
+        font-size: 15px;
+    }
+}
