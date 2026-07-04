@@ -61,6 +61,98 @@
     color: #f26b1d;
 }
 
+/* ====================== КОНТАКТЫ ====================== */
+.hero__contacts {
+    text-align: right;
+}
+
+/* Номер телефона */
+.hero__phone {
+    color: #fff;
+    font-size: 24px;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    transition: color 0.4s ease;
+    text-decoration: none;
+    position: relative;
+}
+
+/* Hover эффект по цифрам */
+.hero__phone:hover {
+    color: #f26b1d;
+}
+
+.hero__phone span {
+    transition: color 0.35s ease;
+    display: inline-block;
+}
+
+.hero__phone:hover span {
+    color: #f26b1d;
+}
+
+/* Иконка трубки */
+.hero__phone::before {
+    content: '☎';
+    font-size: 28px;
+    display: inline-block;
+    animation: phoneRing 2.5s infinite ease-in-out;
+    position: relative;
+    z-index: 2;
+}
+
+/* Звуковые волны */
+.hero__phone::after {
+    content: '';
+    position: absolute;
+    left: 2px;
+    top: 6px;
+    width: 22px;
+    height: 22px;
+    border: 2px solid #f26b1d;
+    border-radius: 50%;
+    opacity: 0;
+    animation: soundWave 2.2s infinite ease-out;
+    z-index: 1;
+}
+
+/* Анимация трубки */
+@keyframes phoneRing {
+    0%   { transform: translateY(0) rotate(-8deg); }
+    25%  { transform: translateY(-4px) rotate(8deg); }
+    50%  { transform: translateY(0) rotate(-8deg); }
+    75%  { transform: translateY(-3px) rotate(6deg); }
+    100% { transform: translateY(0) rotate(-8deg); }
+}
+
+/* Анимация звуковых волн */
+@keyframes soundWave {
+    0%   { transform: scale(0.6); opacity: 0.7; }
+    100% { transform: scale(2.4); opacity: 0; }
+}
+
+/* Мессенджеры */
+.hero__messengers {
+    margin-top: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+
+    background: linear-gradient(90deg, #f26b1d, #ff9a4d, #f26b1d);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientMove 4s linear infinite;
+}
+
+@keyframes gradientMove {
+    0%   { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+}
+
 /* ====================== КОНТЕНТ ====================== */
 .hero__content {
     min-height: 100vh;

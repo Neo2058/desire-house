@@ -2,6 +2,7 @@
 
 namespace App\Platform\Builder\Registry;
 
+use App\Platform\Builder\Blocks\ComparisonBlock;
 use App\Platform\Builder\Blocks\CtaBlock;
 use App\Platform\Builder\Blocks\FeaturesBlock;
 use App\Platform\Builder\Blocks\GalleryBlock;
@@ -21,6 +22,7 @@ final class BuilderRegistry
             ServicesBlock::make(),
             GalleryBlock::make(),
             ProjectsBlock::make(),
+            ComparisonBlock::make(),
             CtaBlock::make(),
         ];
     }

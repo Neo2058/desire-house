@@ -3,9 +3,8 @@
 namespace App\Platform\Builder\Blocks;
 
 use Filament\Forms\Components\Builder\Block;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Repeater;
-use Filament\Forms\Components\Textarea;
-use Filament\Forms\Components\TextInput;
 
 class FeaturesBlock extends BaseBlock
 {
@@ -14,19 +13,38 @@ class FeaturesBlock extends BaseBlock
         return Block::make('features')
             ->label('⭐ Преимущества')
             ->schema([
+
                 self::blockName(),
 
-                self::title(),
+                self::title()
+                    ->default('Почему нам доверяют'),
 
                 self::subtitle(),
 
                 Repeater::make('items')
+                    ->label('Преимущества')
                     ->schema([
-                        TextInput::make('title')
-                            ->required(),
 
-                        Textarea::make('description'),
+                        FileUpload::make('icon')
+                            ->label('Иконка (SVG)')
+                            ->acceptedFileTypes([
+                                'image/svg+xml',
+                            ])
+                            ->directory('features/icons')
+                            ->disk('public'),
+
+                        self::title()
+                            ->label('Заголовок'),
+
+                        self::description()
+                            ->label('Описание'),
+
                     ])
+                    ->addActionLabel('Добавить преимущество')
+                    ->defaultItems(4)
+                    ->collapsible()
+                    ->reorderable(),
+
             ]);
     }
 }

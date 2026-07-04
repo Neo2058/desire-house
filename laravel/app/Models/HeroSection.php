@@ -6,18 +6,23 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Page extends Model implements HasMedia
+class HeroSection extends Model implements HasMedia
 {
     use InteractsWithMedia;
-    protected $fillable = [
-        'title',
-        'slug',
-        'blocks',
-        'is_published',
-    ];
 
-    protected $casts = [
-        'blocks' => 'array',
-        'is_published' => 'boolean',
+    protected $fillable = [
+
+        'name',
+
+        'title',
+
+        'subtitle',
+
+        'description',
+
+        'button_text',
+
+        'button_url',
+
     ];
 }

@@ -4,6 +4,7 @@ namespace App\Platform\Builder\Blocks;
 
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
+use Filament\Schemas\Components\Fieldset;
 use Filament\Schemas\Components\Section;
 
 abstract class BaseBlock
@@ -76,5 +77,11 @@ abstract class BaseBlock
             ])
             ->columns(2)
             ->collapsed();
+    }
+
+    protected static function section(string $title, array $schema): Fieldset
+    {
+        return Fieldset::make($title)
+            ->schema($schema);
     }
 }

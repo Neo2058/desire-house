@@ -1,0 +1,221 @@
+.features {
+
+    background: #171717;
+    padding: 70px 0;
+
+}
+
+.features .container {
+
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 20px;
+
+}
+
+.features__heading {
+
+    text-align: center;
+    margin-bottom: 60px;
+
+}
+
+.features__line {
+
+    width: 60px;
+    height: 3px;
+    background: #ef6b1d;
+    margin: 0 auto 20px;
+
+}
+
+.features__heading h2 {
+
+    margin: 0;
+    color: #fff;
+    font-size: 42px;
+    font-weight: 800;
+    text-transform: uppercase;
+
+}
+
+.features__grid {
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 42px;
+
+}
+
+/* ===========================
+   Карточка
+=========================== */
+
+.feature-card {
+
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+
+    opacity: 0;
+    transform: translateY(35px);
+
+    transition:
+        opacity .7s ease,
+        transform .7s ease;
+
+}
+
+.feature-card.is-visible {
+
+    opacity: 1;
+    transform: translateY(0);
+
+}
+
+/* ===========================
+   Иконка
+=========================== */
+
+.feature-card__icon {
+
+    width: 58px;
+    height: 58px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.feature-card__icon svg {
+
+    width: 58px;
+    height: 58px;
+
+    opacity: 0;
+
+    transform: scale(.65);
+
+    color: #ffffff;
+
+    transition:
+        opacity .5s ease,
+        transform .5s ease,
+        color .5s ease,
+        filter .5s ease;
+
+}
+
+/* Важно для большинства библиотек */
+
+.feature-card__icon svg * {
+
+    transition:
+        fill .5s ease,
+        stroke .5s ease;
+
+}
+
+.feature-card.is-visible .feature-card__icon svg {
+
+    opacity: 1;
+
+    transform: scale(1);
+
+    color: #ef6b1d;
+
+    filter: drop-shadow(0 0 8px rgba(239,107,29,.25));
+
+}
+
+/* Если библиотека использует stroke */
+
+.feature-card.is-visible .feature-card__icon svg * {
+
+    stroke: #ef6b1d;
+
+}
+
+/* ===========================
+   Контент
+=========================== */
+
+.feature-card__content {
+
+    opacity: 0;
+
+    transform: translateY(10px);
+
+    transition:
+        opacity .45s ease .35s,
+        transform .45s ease .35s;
+
+}
+
+.feature-card.is-visible .feature-card__content {
+
+    opacity: 1;
+    transform: translateY(0);
+
+}
+
+.feature-card__content h3 {
+
+    margin: 0 0 8px;
+
+    color: #fff;
+
+    font-size: 22px;
+
+    font-weight: 700;
+
+    line-height: 1.2;
+
+}
+
+.feature-card__content p {
+
+    margin: 0;
+
+    color: #b8b8b8;
+
+    font-size: 16px;
+
+    line-height: 1.6;
+
+}
+
+@media (max-width: 1100px) {
+
+    .features__grid {
+
+        grid-template-columns: repeat(2, 1fr);
+
+    }
+
+}
+
+@media (max-width: 700px) {
+
+    .features {
+
+        padding: 50px 0;
+
+    }
+
+    .features__grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .features__heading h2 {
+
+        font-size: 32px;
+
+    }
+
+}

@@ -27,19 +27,12 @@
             </nav>
 
             <div class="hero__contacts">
-
-                <div class="hero__phone">
-
-                    +7 (999) 999-99-99
-
-                </div>
-
+                <a href="tel:+79999999999" class="hero__phone">
+                    <span>+7</span><span> </span><span>(999)</span><span> </span><span>999-99-99</span>
+                </a>
                 <div class="hero__messengers">
-
                     Telegram / WhatsApp
-
                 </div>
-
             </div>
 
         </div>

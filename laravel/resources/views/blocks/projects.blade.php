@@ -1,33 +1,106 @@
-<section>
+<section class="projects">
 
-    <h2>{{ $block['title'] }}</h2>
+    <div class="container">
 
-    @if(!empty($block['subtitle']))
-        <p>{{ $block['subtitle'] }}</p>
-    @endif
+        <div class="projects__header">
 
-    @foreach($projects as $project)
+            <div class="projects__heading">
 
-        <a href="{{ url('/raboty/'.$project->slug) }}">
-            <article>
+                <span class="projects__line"></span>
 
-                @if($project->getFirstMediaUrl('cover'))
-                    <img
-                        src="{{ $project->getFirstMediaUrl('cover') }}"
-                        alt="{{ $project->title }}"
-                        width="250"
-                    >
+                <h2>{{ $block['title'] }}</h2>
+
+                @if(!empty($block['subtitle']))
+                    <p>{{ $block['subtitle'] }}</p>
                 @endif
 
-                <h3>{{ $project->title }}</h3>
+            </div>
 
-                <p>{{ $project->city }}</p>
+            <a
+                href="{{ url('/raboty') }}"
+                class="projects__all"
+            >
+                Смотреть все работы →
+            </a>
 
-                <p>{{ $project->area_label }}</p>
+        </div>
 
-            </article>
-        </a>
+        <div class="swiper projects-swiper">
 
-    @endforeach
+            <div class="swiper-wrapper">
+
+                @foreach($projects as $project)
+
+                    <div class="swiper-slide">
+
+                        <article class="project-card">
+
+                            <a
+                                href="{{ url('/raboty/'.$project->slug) }}"
+                                class="project-card__link"
+                            >
+
+                                <div class="project-card__image">
+
+                                    @if($project->getFirstMediaUrl('cover'))
+
+                                        <img
+                                            src="{{ $project->getFirstMediaUrl('cover') }}"
+                                            alt="{{ $project->title }}"
+                                        >
+
+                                    @endif
+
+                                </div>
+
+                                <div class="project-card__overlay">
+
+                                    <div class="project-card__content">
+
+                                        <h3>
+
+                                            {{ $project->title }}
+
+                                        </h3>
+
+                                        <p>
+
+                                            {{ $project->city }}
+
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+                            </a>
+
+                        </article>
+
+                    </div>
+
+                @endforeach
+
+            </div>
+
+        </div>
+
+        <div class="projects__navigation">
+
+            <button class="projects__button projects-prev">
+
+                ←
+
+            </button>
+
+            <button class="projects__button projects-next">
+
+                →
+
+            </button>
+
+        </div>
+
+    </div>
 
 </section>
