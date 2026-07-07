@@ -19,10 +19,3 @@ Route::get(
     '/{slug?}',
     PageController::class
 );
-
-//Route::get('/raboty', ProjectIndexController::class);
-//
-//Route::get(
-//    '/raboty/{project:slug}',
-//    ProjectController::class
-//);
