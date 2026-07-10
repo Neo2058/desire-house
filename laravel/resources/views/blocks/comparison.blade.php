@@ -16,7 +16,10 @@
             {{-- LEFT --}}
             <div class="comparison__side comparison__side--left">
 
-                <div class="comparison__bg"></div>
+                <div
+                    class="comparison__bg"
+                    style="background-image:url('{{ $block['left_background'] ?? '' }}')">
+                </div>
 
                 <div class="comparison__content">
 
@@ -50,7 +53,10 @@
             {{-- RIGHT --}}
             <div class="comparison__side comparison__side--right">
 
-                <div class="comparison__bg"></div>
+                <div
+                    class="comparison__bg"
+                    style="background-image:url('{{ $block['right_background'] ?? '' }}')">
+                </div>
 
                 <div class="comparison__content">
 

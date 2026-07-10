@@ -1,0 +1,403 @@
+/* ==========================================
+   COMPARISON
+========================================== */
+
+.comparison {
+
+    background: #111111;
+
+    padding: 120px 0;
+
+    overflow: hidden;
+
+}
+
+.comparison .container {
+
+    max-width: 1320px;
+
+    margin: 0 auto;
+
+    padding: 0 20px;
+
+}
+
+/* ==========================================
+   HEADER
+========================================== */
+
+.comparison__header {
+
+    text-align: center;
+
+    margin-bottom: 70px;
+
+}
+
+.comparison__line {
+
+    display: block;
+
+    width: 60px;
+
+    height: 3px;
+
+    margin: 0 auto 20px;
+
+    background: #ef6b1d;
+
+}
+
+.comparison__header h2 {
+
+    margin: 0;
+
+    color: #fff;
+
+    font-size: 44px;
+
+    font-weight: 800;
+
+    text-transform: uppercase;
+
+}
+
+/* ==========================================
+   WRAPPER
+========================================== */
+
+.comparison__wrapper {
+
+    display: grid;
+
+    grid-template-columns: 1fr 140px 1fr;
+
+    align-items: stretch;
+
+    gap: 0;
+
+    position: relative;
+
+}
+
+/* ==========================================
+   SIDES
+========================================== */
+
+.comparison__side {
+
+    position: relative;
+
+    min-height: 650px;
+
+    overflow: hidden;
+
+    border-radius: 18px;
+
+    background: #1c1c1c;
+
+    opacity: 0;
+
+    transition:
+
+        opacity .9s ease,
+
+        transform .9s cubic-bezier(.2,.8,.2,1);
+
+}
+
+.comparison__side--left {
+
+    transform: translateX(-120px);
+
+}
+
+.comparison__side--right {
+
+    transform: translateX(120px);
+
+}
+
+.comparison__side.is-visible {
+
+    opacity: 1;
+
+    transform: translateX(0);
+
+}
+
+/* ==========================================
+   BACKGROUND
+========================================== */
+
+.comparison__bg {
+
+    position: absolute;
+
+    inset: 0;
+
+    background-size: cover;
+
+    background-position: center;
+
+    transform: scale(1);
+
+    transition: transform 1.2s ease;
+
+}
+
+.comparison__side:hover .comparison__bg {
+
+    transform: scale(1.06);
+
+}
+
+.comparison__bg::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background: linear-gradient(
+
+        to top,
+
+        rgba(0,0,0,.92),
+
+        rgba(0,0,0,.45),
+
+        rgba(0,0,0,.15)
+
+    );
+
+}
+
+/* ==========================================
+   CONTENT
+========================================== */
+
+.comparison__content {
+
+    position: relative;
+
+    z-index: 5;
+
+    padding: 60px;
+
+    color: white;
+
+}
+
+.comparison__content h3 {
+
+    margin: 0 0 40px;
+
+    font-size: 36px;
+
+    line-height: 1.2;
+
+}
+
+/* ==========================================
+   LIST
+========================================== */
+
+.comparison__content ul {
+
+    margin: 0;
+
+    padding: 0;
+
+    list-style: none;
+
+}
+
+.comparison__item {
+
+    opacity: 0;
+
+    transform: translateY(25px);
+
+    margin-bottom: 22px;
+
+    font-size: 20px;
+
+    line-height: 1.5;
+
+    transition:
+
+        opacity .6s ease,
+
+        transform .6s ease;
+
+    transition-delay: calc(var(--i) * 120ms);
+
+}
+
+.comparison__side.is-visible .comparison__item {
+
+    opacity: 1;
+
+    transform: translateY(0);
+
+}
+
+.comparison__item--good {
+
+    color: #ffffff;
+
+}
+
+/* ==========================================
+   VS
+========================================== */
+
+.comparison__vs {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    position: relative;
+
+}
+
+.comparison__vs::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 2px;
+
+    height: 240px;
+
+    background: linear-gradient(
+
+        transparent,
+
+        #ef6b1d,
+
+        transparent
+
+    );
+
+    transform: rotate(25deg) scaleY(0);
+
+    transform-origin: center;
+
+    transition: transform .8s ease;
+
+}
+
+.comparison__vs span {
+
+    width: 90px;
+
+    height: 90px;
+
+    border-radius: 50%;
+
+    background: #ef6b1d;
+
+    color: white;
+
+    font-size: 28px;
+
+    font-weight: 800;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    transform: scale(0);
+
+    box-shadow:
+
+        0 0 30px rgba(239,107,29,.45);
+
+    transition:
+
+        transform .7s cubic-bezier(.2,.8,.2,1);
+
+    position: relative;
+
+    z-index: 2;
+
+}
+
+.comparison__wrapper.is-visible .comparison__vs span {
+
+    transform: scale(1);
+
+}
+
+.comparison__wrapper.is-visible .comparison__vs::before {
+
+    transform: rotate(25deg) scaleY(1);
+
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 1100px){
+
+    .comparison__wrapper{
+
+        grid-template-columns:1fr;
+
+        gap:30px;
+
+    }
+
+    .comparison__vs{
+
+        order:2;
+
+        height:100px;
+
+    }
+
+    .comparison__side{
+
+        min-height:500px;
+
+    }
+
+}
+
+@media (max-width:700px){
+
+    .comparison{
+
+        padding:70px 0;
+
+    }
+
+    .comparison__content{
+
+        padding:35px;
+
+    }
+
+    .comparison__header h2{
+
+        font-size:32px;
+
+    }
+
+    .comparison__content h3{
+
+        font-size:28px;
+
+    }
+
+}
