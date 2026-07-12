@@ -1,0 +1,368 @@
+/* ==========================================
+   STATS
+========================================== */
+
+.stats {
+
+    background: #171717;
+
+    padding: 110px 0;
+
+    overflow: hidden;
+
+}
+
+.stats .container {
+
+    max-width: 1320px;
+
+    margin: 0 auto;
+
+    padding: 0 20px;
+
+}
+
+/* ==========================================
+   LAYOUT
+========================================== */
+
+.stats__wrapper {
+
+    display: grid;
+
+    grid-template-columns: 430px 1fr 340px;
+
+    gap: 70px;
+
+    align-items: center;
+
+}
+
+/* ==========================================
+   PHOTO
+========================================== */
+
+.stats__photo {
+
+    position: relative;
+
+    opacity: 0;
+
+    transform: translateX(-70px);
+
+    transition: all .9s ease;
+
+}
+
+.stats__photo.is-visible {
+
+    opacity: 1;
+
+    transform: translateX(0);
+
+}
+
+.stats__photo img {
+
+    display: block;
+
+    width: 100%;
+
+    border-radius: 24px;
+
+    box-shadow:
+        0 30px 60px rgba(0,0,0,.45);
+
+}
+
+/* ==========================================
+   CONTENT
+========================================== */
+
+.stats__content {
+
+    opacity: 0;
+
+    transform: translateY(40px);
+
+    transition: all .9s ease .2s;
+
+}
+
+.stats__content.is-visible {
+
+    opacity: 1;
+
+    transform: translateY(0);
+
+}
+
+.stats__line {
+
+    display: block;
+
+    width: 60px;
+
+    height: 3px;
+
+    background: #ef6b1d;
+
+    margin-bottom: 25px;
+
+}
+
+.stats__content h2 {
+
+    margin: 0;
+
+    color: white;
+
+    font-size: 48px;
+
+    font-weight: 800;
+
+    line-height: 1.1;
+
+    text-transform: uppercase;
+
+}
+
+.stats__content h3 {
+
+    margin: 18px 0 30px;
+
+    color: #ef6b1d;
+
+    font-size: 28px;
+
+    font-weight: 700;
+
+    line-height: 1.3;
+
+}
+
+.stats__description {
+
+    color: #cfcfcf;
+
+    font-size: 18px;
+
+    line-height: 1.9;
+
+    margin: 0;
+
+    max-width: 560px;
+
+}
+
+.stats__signature {
+
+    margin-top: 40px;
+
+}
+
+.stats__signature img {
+
+    max-width: 220px;
+
+    opacity: .95;
+
+}
+
+/* ==========================================
+   NUMBERS
+========================================== */
+
+.stats__numbers {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 22px;
+
+}
+
+.stats__card {
+
+    background: rgba(255,255,255,.05);
+
+    border: 1px solid rgba(255,255,255,.08);
+
+    backdrop-filter: blur(14px);
+
+    border-radius: 22px;
+
+    padding: 32px;
+
+    opacity: 0;
+
+    transform: translateX(50px);
+
+    transition:
+
+        opacity .7s ease,
+
+        transform .7s ease,
+
+        background .35s ease,
+
+        border-color .35s ease;
+
+    transition-delay: calc(var(--i) * 140ms);
+
+}
+
+.stats__card.is-visible {
+
+    opacity: 1;
+
+    transform: translateX(0);
+
+}
+
+.stats__card:hover {
+
+    background: rgba(239,107,29,.08);
+
+    border-color: rgba(239,107,29,.35);
+
+}
+
+.stats__number {
+
+    color: #ef6b1d;
+
+    font-size: 64px;
+
+    font-weight: 900;
+
+    line-height: 1;
+
+    margin-bottom: 12px;
+
+}
+
+.stats__label {
+
+    color: white;
+
+    font-size: 20px;
+
+    line-height: 1.5;
+
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width:1200px){
+
+    .stats__wrapper{
+
+        grid-template-columns:340px 1fr;
+
+    }
+
+    .stats__numbers{
+
+        grid-column:1/-1;
+
+        display:grid;
+
+        grid-template-columns:repeat(3,1fr);
+
+    }
+
+}
+
+@media (max-width:900px){
+
+    .stats{
+
+        padding:80px 0;
+
+    }
+
+    .stats__wrapper{
+
+        grid-template-columns:1fr;
+
+        gap:50px;
+
+    }
+
+    .stats__photo{
+
+        max-width:420px;
+
+        margin:0 auto;
+
+    }
+
+    .stats__content{
+
+        text-align:center;
+
+    }
+
+    .stats__line{
+
+        margin:0 auto 25px;
+
+    }
+
+    .stats__description{
+
+        margin:0 auto;
+
+    }
+
+    .stats__signature{
+
+        text-align:center;
+
+    }
+
+    .stats__numbers{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+@media (max-width:600px){
+
+    .stats__content h2{
+
+        font-size:34px;
+
+    }
+
+    .stats__content h3{
+
+        font-size:22px;
+
+    }
+
+    .stats__description{
+
+        font-size:16px;
+
+    }
+
+    .stats__number{
+
+        font-size:48px;
+
+    }
+
+    .stats__label{
+
+        font-size:18px;
+
+    }
+
+}

@@ -7,6 +7,7 @@ use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Schemas\Components\Fieldset;
+use Filament\Forms\Components\FileUpload;
 
 class ComparisonBlock extends BaseBlock
 {
@@ -27,12 +28,16 @@ class ComparisonBlock extends BaseBlock
                             ->label('Заголовок')
                             ->required(),
 
-                        SpatieMediaLibraryFileUpload::make('left_background')
-                            ->label('Фоновое изображение')
-                            ->collection('comparison-left')
+//                        SpatieMediaLibraryFileUpload::make('left_background')
+//                            ->label('Фоновое изображение')
+//                            ->collection('comparison-left')
+//                            ->image()
+//                            ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
+//                            ->maxFiles(1),
+                        FileUpload::make('left_background')
+                            ->label('Фоновое изображение слева')
                             ->image()
-                            ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
-                            ->maxFiles(1),
+                            ->directory('comparison'),
 
                         Repeater::make('left_items')
                             ->label('Пункты')
@@ -55,12 +60,17 @@ class ComparisonBlock extends BaseBlock
                             ->label('Заголовок')
                             ->required(),
 
-                        SpatieMediaLibraryFileUpload::make('right_background')
-                            ->label('Фоновое изображение')
-                            ->collection('comparison-left')
+//                        SpatieMediaLibraryFileUpload::make('right_background')
+//                            ->label('Фоновое изображение')
+//                            ->collection('comparison-right')
+//                            ->image()
+//                            ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
+//                            ->maxFiles(1),
+
+                        FileUpload::make('right_background')
+                            ->label('Фоновое изображение справа')
                             ->image()
-                            ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
-                            ->maxFiles(1),
+                            ->directory('comparison'),
 
                         Repeater::make('right_items')
                             ->label('Пункты')

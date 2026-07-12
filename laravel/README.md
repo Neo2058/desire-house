@@ -1,58 +1,319 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Архитектура проекта
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Проект представляет собой CMS для строительной компании на Laravel + Filament + Builder.
 
-## About Laravel
+Главная задача проекта — получить современный продающий сайт с собственной CMS, которую впоследствии можно масштабировать до полноценной системы управления контентом и CRM.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+# Главный принцип разработки
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Разработка ведётся в два этапа.
 
-## Learning Laravel
+## Этап 1 — Рабочий фронтенд
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+До завершения всех пользовательских страниц мы:
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+* не усложняем архитектуру;
+* не делаем преждевременную оптимизацию;
+* не разбиваем всё на десятки сущностей;
+* используем Builder как основной конструктор страниц.
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+Главная задача первого этапа — получить полностью рабочий продающий сайт.
 
-## Agentic Development
+---
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+## Этап 2 — Нормализация CMS
 
-```bash
-composer require laravel/boost --dev
+После завершения фронтенда производится рефакторинг архитектуры.
 
-php artisan boost:install
-```
+Будут вынесены отдельные сущности:
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+* HeroSection
+* StatsSection
+* CTASection
+* FAQSection
+* TeamSection
+* GallerySection
+* и другие повторно используемые блоки.
 
-## Contributing
+Builder страниц будет хранить только ссылки на эти сущности.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+---
 
-## Code of Conduct
+# Архитектура Builder
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Каждая страница состоит из набора блоков.
 
-## Security Vulnerabilities
+Пример:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Страница
 
-## License
+* Hero
+* Features
+* Projects
+* Comparison
+* Stats
+* CTA
+* Footer
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Каждый блок является самостоятельным компонентом.
+
+Структура блока:
+
+* Block PHP
+* Blade
+* CSS
+* JavaScript
+
+Никакой логики отображения не должно находиться внутри других блоков.
+
+---
+
+# Завершённые блоки
+
+✔ Hero
+
+✔ Features
+
+✔ Projects
+
+✔ Comparison
+
+✔ Stats
+
+---
+
+# Следующий блок
+
+CTA (Форма заявки)
+
+---
+
+# Единая система заявок (Lead System)
+
+В проекте создаётся единая система обработки заявок.
+
+Все формы сайта работают через неё.
+
+Источники заявок:
+
+* Hero
+* CTA
+* будущий калькулятор
+* будущие формы
+* будущие квизы
+
+Все они используют одну модель.
+
+---
+
+# Архитектура Lead
+
+Будут созданы:
+
+app/Models/Lead.php
+
+app/Http/Controllers/LeadController.php
+
+app/Http/Requests/LeadRequest.php
+
+app/Mail/LeadMail.php
+
+---
+
+# Структура таблицы Leads
+
+Каждая заявка должна хранить:
+
+id
+
+Имя клиента
+
+Телефон
+
+Тип объекта
+
+Источник заявки
+
+Комментарий менеджера
+
+Статус заявки
+
+Флаг обработки
+
+URL страницы
+
+Дата создания
+
+Дата изменения
+
+---
+
+# Источник заявки
+
+Каждая форма автоматически передаёт источник.
+
+Например:
+
+hero
+
+cta
+
+calculator
+
+quiz
+
+footer
+
+Это позволит анализировать эффективность каждого блока сайта.
+
+---
+
+# Статусы заявки
+
+На первом этапе используются следующие статусы:
+
+Новая
+
+В работе
+
+На уточнении
+
+Ожидает оплаты
+
+Оплачено
+
+Завершено
+
+Отменено
+
+В дальнейшем список может расширяться.
+
+---
+
+# CRM внутри Filament
+
+Будет создан раздел
+
+Заявки
+
+В нём отображаются:
+
+Имя
+
+Телефон
+
+Тип объекта
+
+Источник
+
+Статус
+
+Дата
+
+Обработана
+
+Комментарий менеджера
+
+При открытии заявки менеджер сможет:
+
+изменить статус
+
+поставить отметку "обработано"
+
+оставить комментарий
+
+посмотреть страницу, с которой пришла заявка
+
+---
+
+# Будущая CRM
+
+После завершения базовой версии будут добавлены:
+
+назначение ответственного менеджера
+
+история изменения статусов
+
+фильтрация
+
+поиск
+
+экспорт Excel
+
+уведомления Telegram
+
+уведомления WhatsApp
+
+напоминания
+
+---
+
+# Аналитика
+
+После появления CRM создаётся раздел
+
+Аналитика
+
+В нём будут графики:
+
+Количество заявок
+
+Заявки по дням
+
+Заявки по месяцам
+
+Конверсия Hero
+
+Конверсия CTA
+
+Конверсия калькулятора
+
+Популярные типы объектов
+
+Статусы заявок
+
+Среднее время обработки
+
+Конверсия в продажу
+
+Эффективность рекламы
+
+---
+
+# Принципы разработки
+
+Перед каждым новым модулем сначала утверждается архитектура.
+
+После утверждения:
+
+создаётся Builder Block
+
+создаётся Blade
+
+создаётся CSS
+
+создаётся JavaScript
+
+только после этого реализуется backend
+
+никаких "временных костылей", которые потом сложно удалить
+
+---
+
+# Философия проекта
+
+Мы не строим просто сайт.
+
+Мы строим платформу.
+
+Сначала создаётся красивый и полностью рабочий фронтенд.
+
+Затем он постепенно превращается в полноценную CMS.
+
+После этого CMS развивается в CRM.
+
+Финальный этап — аналитическая система с отчётами, графиками и полной воронкой продаж.
+
+Именно поэтому скорость разработки важна, но она никогда не должна ухудшать архитектуру проекта.

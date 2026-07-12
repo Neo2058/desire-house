@@ -18,7 +18,11 @@
 
                 <div
                     class="comparison__bg"
-                    style="background-image:url('{{ $block['left_background'] ?? '' }}')">
+                    style="
+                            @if(!empty($block['left_background']))
+                            background-image:url('{{ asset('storage/'.$block['left_background']) }}');
+                            @endif
+                            ">
                 </div>
 
                 <div class="comparison__content">
@@ -30,9 +34,9 @@
                         @foreach($block['left_items'] ?? [] as $index => $item)
 
                             <li class="comparison__item" style="--i: {{ $index }}">
+                                <span class="comparison__icon comparison__icon--bad"></span>
 
-                                ❌ {{ $item['text'] }}
-
+                                <span>{{ $item['text'] }}</span>
                             </li>
 
                         @endforeach
@@ -55,7 +59,11 @@
 
                 <div
                     class="comparison__bg"
-                    style="background-image:url('{{ $block['right_background'] ?? '' }}')">
+                    style="
+                            @if(!empty($block['right_background']))
+                            background-image:url('{{ asset('storage/'.$block['right_background']) }}');
+                            @endif
+                            ">
                 </div>
 
                 <div class="comparison__content">
@@ -67,9 +75,9 @@
                         @foreach($block['right_items'] ?? [] as $index => $item)
 
                             <li class="comparison__item comparison__item--good" style="--i: {{ $index }}">
+                                <span class="comparison__icon comparison__icon--good"></span>
 
-                                {{ $item['text'] }} ✔
-
+                                <span>{{ $item['text'] }}</span>
                             </li>
 
                         @endforeach
