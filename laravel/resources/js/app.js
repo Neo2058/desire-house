@@ -2,6 +2,7 @@ import Swiper from 'swiper';
 import { Navigation } from 'swiper/modules';
 import './comparison';
 import './stats.js';
+import './cta.js';
 
 import 'swiper/css';
 

@@ -1,0 +1,559 @@
+/* ==========================================
+   CTA
+========================================== */
+
+.cta {
+
+    position: relative;
+
+    background: #111;
+
+    overflow: hidden;
+
+    padding: 90px 0;
+
+}
+
+.cta::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    z-index:1;
+
+    background:linear-gradient(
+        90deg,
+        #111 0%,
+        #111 35%,
+        rgba(17,17,17,.92) 48%,
+        rgba(17,17,17,.55) 62%,
+        rgba(17,17,17,0) 80%
+    );
+
+}
+
+.cta__background {
+
+    position: absolute;
+
+    inset: 0;
+
+    background-size: cover;
+
+    background-position: center;
+
+    opacity: .18;
+
+}
+
+
+.cta .container {
+
+    position: relative;
+
+    z-index: 2;
+
+    max-width: 1320px;
+
+    margin: 0 auto;
+
+    padding: 0 20px;
+
+}
+
+/* ==========================================
+   GRID
+========================================== */
+
+.cta__content{
+
+    display:grid;
+
+    grid-template-columns:560px 460px;
+
+    justify-content:space-between;
+
+    gap:80px;
+
+    align-items:center;
+
+}
+
+/* ==========================================
+   LEFT
+========================================== */
+
+.cta__line {
+
+    display: block;
+
+    width: 60px;
+
+    height: 3px;
+
+    background: #ef6b1d;
+
+    margin-bottom: 22px;
+
+}
+
+.cta__left h2 {
+
+    margin: 0;
+
+    color: white;
+
+    font-size: 56px;
+
+    font-weight: 900;
+
+    line-height: 1.05;
+
+    text-transform: uppercase;
+
+}
+
+.cta__left h3 {
+
+    margin: 16px 0 28px;
+
+    color: #ef6b1d;
+
+    font-size: 38px;
+
+    font-weight: 800;
+
+    text-transform: uppercase;
+
+}
+
+.cta__left p {
+
+    margin: 0;
+
+    color: #d2d2d2;
+
+    font-size: 18px;
+
+    line-height: 1.8;
+
+    max-width: 520px;
+
+}
+
+/* ==========================================
+   FORM
+========================================== */
+
+.cta-form {
+
+    display: flex;
+
+    position:relative;
+
+    overflow:hidden;
+
+    flex-direction: column;
+
+    gap: 18px;
+
+    background: rgba(0,0,0,.35);
+
+    backdrop-filter: blur(10px);
+
+    padding: 35px;
+
+    border: 1px solid rgba(255,255,255,.08);
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 25px 50px rgba(0,0,0,.35);
+
+}
+
+.cta-form::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+        radial-gradient(
+            circle at top right,
+            rgba(239,107,29,.08),
+            transparent 55%
+        );
+
+    pointer-events:none;
+
+}
+
+.cta-form input,
+.cta-form select {
+
+    height: 58px;
+
+    padding: 0 18px;
+
+    background: rgba(255,255,255,.05);
+
+    border: 1px solid rgba(255,255,255,.12);
+
+    color: white;
+
+    font-size: 16px;
+
+    border-radius: 10px;
+
+    transition:
+        border-color .25s,
+        box-shadow .25s,
+        background .25s,
+        transform .25s;
+
+}
+
+.cta-form input:hover,
+.cta-form select:hover{
+
+    background:rgba(255,255,255,.08);
+
+}
+
+.cta-form select {
+
+    cursor: pointer;
+
+}
+
+.cta-form input::placeholder {
+
+    color: rgba(255,255,255,.55);
+
+}
+
+.cta-form input:focus,
+.cta-form select:focus {
+
+    outline: none;
+
+    border-color: #ef6b1d;
+
+    box-shadow: 0 0 20px rgba(239,107,29,.18);
+
+    transform:translateY(-2px);
+}
+
+.cta-form button {
+
+    height: 62px;
+
+    border: none;
+
+    cursor: pointer;
+
+    border-radius: 10px;
+
+    margin-top: 8px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #ff8b45,
+            #ef6b1d
+        );
+
+    box-shadow:
+
+        0 12px 25px rgba(239,107,29,.25);
+
+    color: white;
+
+    font-size: 18px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    transition: .3s;
+
+}
+
+.cta-form button:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+
+        0 20px 40px rgba(239,107,29,.45);
+
+}
+
+.cta-form button:active {
+
+    transform: translateY(0);
+
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width:1100px){
+
+    .cta__background{
+
+        width:100%;
+
+        opacity:.22;
+
+    }
+
+    .cta::before{
+
+        background:rgba(17,17,17,.82);
+
+    }
+
+    .cta__content{
+
+        grid-template-columns:1fr;
+
+        gap:50px;
+
+    }
+
+
+    .cta__left{
+
+        text-align:center;
+
+    }
+
+    .cta__line{
+
+        margin:0 auto 22px;
+
+    }
+
+    .cta__left p{
+
+        margin:0 auto;
+
+    }
+
+}
+
+@media (max-width:700px){
+
+    .cta{
+
+        padding:70px 0;
+
+    }
+
+    .cta-form{
+
+        padding:25px;
+
+    }
+
+    .cta__left h2{
+
+        font-size:38px;
+
+        text-shadow:
+
+            0 8px 30px rgba(0,0,0,.35);
+
+    }
+
+    .cta__left h3{
+
+        font-size:28px;
+
+        letter-spacing:.04em;
+
+    }
+
+}
+/* ==========================================
+   ANIMATIONS
+========================================== */
+
+.cta__background{
+
+    position:absolute;
+
+    top:0;
+    right:0;
+
+    width:48%;
+    height:100%;
+
+    background-size:cover;
+    background-repeat:no-repeat;
+    background-position:center;
+
+    transform:scale(1.08);
+
+    transition:transform 2.5s ease;
+
+    z-index:1;
+
+}
+
+.cta.is-visible .cta__background{
+
+    transform:scale(1);
+
+}
+
+.cta__left{
+
+    opacity:0;
+
+    transform:translateX(-70px);
+
+    transition:
+        opacity .9s ease,
+        transform .9s cubic-bezier(.2,.8,.2,1);
+
+}
+
+.cta-form{
+
+    opacity:0;
+
+    transform:translateX(70px);
+
+    transition:
+        transform .35s ease,
+        box-shadow .35s ease,
+        border-color .35s ease;
+
+}
+
+.cta-form>*{
+
+    opacity:0;
+
+    transform:translateY(18px);
+
+    transition:
+        opacity .45s ease,
+        transform .45s ease;
+
+}
+
+.cta-form:hover{
+
+    transform:translateY(-6px);
+
+    border-color:rgba(239,107,29,.28);
+
+    box-shadow:
+        0 35px 70px rgba(0,0,0,.45),
+        0 0 0 1px rgba(239,107,29,.08);
+
+}
+
+.cta.is-visible .cta__background{
+
+    transform:scale(1);
+
+}
+
+.cta.is-visible .cta__left{
+
+    opacity:1;
+
+    transform:none;
+
+}
+
+.cta.is-visible .cta-form{
+
+    opacity:1;
+
+    transform:none;
+
+}
+
+.cta.is-visible .cta-form>*:nth-child(1){
+
+    transition-delay:.25s;
+
+}
+
+.cta.is-visible .cta-form>*:nth-child(2){
+
+    transition-delay:.35s;
+
+}
+
+.cta.is-visible .cta-form>*:nth-child(3){
+
+    transition-delay:.45s;
+
+}
+
+.cta.is-visible .cta-form>*:nth-child(4){
+
+    transition-delay:.55s;
+
+}
+
+.cta.is-visible .cta-form>*{
+
+    opacity:1;
+
+    transform:none;
+
+}
+
+.cta-form button{
+
+    overflow:hidden;
+
+    position:relative;
+
+}
+
+.cta-form button::after{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:-120%;
+
+    width:60%;
+
+    height:100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.35),
+            transparent
+        );
+
+}
+
+.cta-form button:hover::after{
+
+    left:170%;
+
+    transition:left .8s ease;
+
+}
