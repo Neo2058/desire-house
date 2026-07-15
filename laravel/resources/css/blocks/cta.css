@@ -526,6 +526,24 @@
 
 }
 
+.button-loader{
+
+    display:none;
+
+}
+
+.cta-form button.loading .button-text{
+
+    display:none;
+
+}
+
+.cta-form button.loading .button-loader{
+
+    display:inline;
+
+}
+
 .cta-form button::after{
 
     content:"";

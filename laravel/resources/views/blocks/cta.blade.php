@@ -37,7 +37,17 @@
 
             <div class="cta__right">
 
-                <form class="cta-form">
+                <form
+                    class="cta-form"
+                    id="lead-form"
+                >
+                    @csrf
+
+                    <input
+                        type="hidden"
+                        name="source"
+                        value="cta"
+                    />
 
                     <input
                         type="text"
@@ -68,6 +78,11 @@
                         {{ $block['button_text'] ?? 'Получить расчёт' }}
 
                     </button>
+
+                    <span class="button-loader">
+                        Отправка...
+                    </span>
+
 
                 </form>
 

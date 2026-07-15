@@ -10,3 +10,44 @@
 @import "./blocks/comparison.css";
 @import "./blocks/stats.css";
 @import "./blocks/cta.css";
+
+.lead-success{
+
+    position:fixed;
+
+    right:30px;
+
+    bottom:30px;
+
+    background:#171717;
+
+    color:white;
+
+    border-left:4px solid #ef6b1d;
+
+    padding:20px 30px;
+
+    border-radius:12px;
+
+    box-shadow:
+        0 20px 50px rgba(0,0,0,.4);
+
+    transform:
+        translateY(40px);
+
+    opacity:0;
+
+    transition:.4s;
+
+    z-index:9999;
+
+}
+
+
+.lead-success.show{
+
+    opacity:1;
+
+    transform:none;
+
+}
