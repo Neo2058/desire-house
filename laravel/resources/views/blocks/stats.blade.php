@@ -7,9 +7,14 @@
             {{-- Фото --}}
             <div class="stats__photo">
 
-                <img
-                    src="{{ asset('images/stats/person.png') }}"
-                    alt="{{ $block['title'] ?? '' }}">
+                @if($person)
+
+                    <img
+                        src="{{ $person }}"
+                        alt="{{ $block['title'] }}"
+                    >
+
+                @endif
 
             </div>
 
@@ -36,9 +41,14 @@
 
                 <div class="stats__signature">
 
-                    <img
-                        src="{{ asset('images/stats/signature.png') }}"
-                        alt="Подпись">
+                    @if($signature)
+
+                        <img
+                            src="{{ $signature }}"
+                            alt="Подпись"
+                        >
+
+                    @endif
 
                 </div>
 

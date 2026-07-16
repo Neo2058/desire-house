@@ -4,9 +4,10 @@ namespace App\Platform\Builder\Blocks;
 
 use Filament\Forms\Components\Builder\Block;
 use Filament\Forms\Components\Repeater;
-use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
+use App\Models\Image;
+use Filament\Forms\Components\Select;
 
 class StatsBlock extends BaseBlock
 {
@@ -26,23 +27,32 @@ class StatsBlock extends BaseBlock
                     ->label('Описание')
                     ->rows(5),
 
-                SpatieMediaLibraryFileUpload::make('background_image_id')
+                Select::make('background_image_id')
                     ->label('Фоновое изображение')
-                    ->collection('stats-background')
-                    ->image()
-                    ->maxFiles(1),
+                    ->searchable()
+                    ->preload()
+                    ->options(fn () =>
+                    Image::query()
+                        ->pluck('title','id')
+                    ),
 
-                SpatieMediaLibraryFileUpload::make('person_image_id')
+                Select::make('person_image_id')
                     ->label('Фотография')
-                    ->collection('stats-person')
-                    ->image()
-                    ->maxFiles(1),
+                    ->searchable()
+                    ->preload()
+                    ->options(fn () =>
+                    Image::query()
+                        ->pluck('title','id')
+                    ),
 
-                SpatieMediaLibraryFileUpload::make('signature_image_id')
+                Select::make('signature_image_id')
                     ->label('Подпись')
-                    ->collection('stats-signature')
-                    ->image()
-                    ->maxFiles(1),
+                    ->searchable()
+                    ->preload()
+                    ->options(fn () =>
+                    Image::query()
+                        ->pluck('title','id')
+                    ),
 
                 Repeater::make('items')
                     ->label('Статистика')

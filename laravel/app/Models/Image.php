@@ -16,6 +16,13 @@ class Image extends Model implements HasMedia
         'alt',
     ];
 
+    public function registerMediaCollections(): void
+    {
+        $this
+            ->addMediaCollection('image')
+            ->useDisk('public');
+    }
+
     public function getUrlAttribute(): string
     {
         return $this->getFirstMediaUrl('image');

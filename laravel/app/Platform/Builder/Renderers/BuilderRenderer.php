@@ -6,6 +6,7 @@ use App\Platform\Builder\Providers\ServicesProvider;
 use App\Platform\Builder\Providers\ProjectsProvider;
 use App\Platform\Builder\Providers\GalleryProvider;
 use App\Platform\Builder\Providers\HeroProvider;
+use App\Platform\Builder\Providers\StatsProvider;
 
 class BuilderRenderer
 {
@@ -28,6 +29,8 @@ class BuilderRenderer
                     ),
 
                     'gallery' => GalleryProvider::make($block['data']),
+
+                    'stats' => StatsProvider::make($block['data']),
 
 
                     default => [

@@ -27,6 +27,7 @@ class ImageForm
                 SpatieMediaLibraryFileUpload::make('image')
                     ->label('Изображение')
                     ->collection('image')
+                    ->disk('public')
                     ->image()
                     ->required(),
 
