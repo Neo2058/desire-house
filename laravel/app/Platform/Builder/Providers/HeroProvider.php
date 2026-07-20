@@ -3,6 +3,7 @@
 namespace App\Platform\Builder\Providers;
 
 use App\Models\Image;
+use App\Platform\Builder\Providers\HeaderProvider;
 
 final class HeroProvider extends BaseProvider
 {
@@ -19,12 +20,18 @@ final class HeroProvider extends BaseProvider
             $person = Image::find($block['person_image_id']);
         }
 
+        $header = HeaderProvider::make();
+
         return [
+
             'block' => $block,
 
             'background' => $background?->url,
 
             'person' => $person?->url,
+
+            'menu' => $header['menu'],
+
         ];
     }
 }

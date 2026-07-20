@@ -18,13 +18,30 @@
 
             <nav class="hero__menu">
 
-                <a href="#">Услуги</a>
-                <a href="#">Наши работы</a>
-                <a href="#">О нас</a>
-                <a href="#">Как мы работаем</a>
-                <a href="#">Контакты</a>
+                @foreach($menu as $item)
+
+                    <a href="{{ $item['url'] }}">
+
+                        {{ $item['title'] }}
+
+                    </a>
+
+                @endforeach
 
             </nav>
+
+            <button
+                class="hero__burger"
+                id="hero-burger"
+                type="button"
+                aria-label="Меню"
+            >
+
+                <span></span>
+                <span></span>
+                <span></span>
+
+            </button>
 
             <div class="hero__contacts">
                 <a href="tel:+79309743240" class="hero__phone">
@@ -38,6 +55,66 @@
         </div>
 
     </header>
+
+    <div
+        class="mobile-menu"
+        id="mobile-menu"
+    >
+
+        <div class="mobile-menu__overlay"></div>
+
+        <div class="mobile-menu__panel">
+
+            <button
+                class="mobile-menu__close"
+                type="button"
+            >
+
+                ×
+
+            </button>
+
+            <nav class="mobile-menu__nav">
+
+                @foreach($menu as $item)
+
+                    <a
+                        href="{{ $item['url'] }}"
+                        class="mobile-menu__link"
+                    >
+
+                        {{ $item['title'] }}
+
+                    </a>
+
+                @endforeach
+
+            </nav>
+
+            <div class="mobile-menu__contacts">
+
+                <a
+                    href="tel:+79309743240"
+                    class="mobile-menu__phone"
+                >
+
+                    +7 (930) 974-32-40
+
+                </a>
+
+                <div class="mobile-menu__messengers">
+
+                    Telegram
+
+                    WhatsApp
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
 
     <div class="container hero__content">
 

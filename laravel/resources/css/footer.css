@@ -1,0 +1,383 @@
+/* ==========================================
+   FOOTER
+========================================== */
+
+.footer{
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:#111;
+
+    padding:90px 0 35px;
+
+    color:#fff;
+
+}
+
+.footer::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+        radial-gradient(
+            circle at top right,
+            rgba(239,107,29,.08),
+            transparent 40%
+        );
+
+    pointer-events:none;
+
+}
+
+.footer .container{
+
+    position:relative;
+
+    z-index:2;
+
+    max-width:1320px;
+
+    margin:0 auto;
+
+    padding:0 20px;
+
+}
+
+/* ==========================================
+   GRID
+========================================== */
+
+.footer__grid{
+
+    display:grid;
+
+    grid-template-columns:1.4fr 1fr 1fr;
+
+    gap:80px;
+
+    padding-bottom:55px;
+
+    border-bottom:1px solid rgba(255,255,255,.08);
+
+}
+
+/* ==========================================
+   ABOUT
+========================================== */
+
+.footer__logo{
+
+    width:160px;
+
+    display:block;
+
+    margin-bottom:30px;
+
+}
+
+.footer__about h3{
+
+    margin:0 0 18px;
+
+    font-size:30px;
+
+    font-weight:800;
+
+    text-transform:uppercase;
+
+}
+
+.footer__about p{
+
+    margin:0;
+
+    color:#bfbfbf;
+
+    line-height:1.8;
+
+    max-width:420px;
+
+}
+
+/* ==========================================
+   TITLES
+========================================== */
+
+.footer h4{
+
+    margin:0 0 25px;
+
+    color:#ef6b1d;
+
+    font-size:20px;
+
+    font-weight:700;
+
+    text-transform:uppercase;
+
+}
+
+/* ==========================================
+   LINKS
+========================================== */
+
+.footer__menu,
+.footer__contacts{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:16px;
+
+}
+
+.footer a{
+
+    width:max-content;
+
+    color:#d8d8d8;
+
+    text-decoration:none;
+
+    transition:.3s;
+
+    position:relative;
+
+}
+
+.footer a::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    bottom:-4px;
+
+    width:0;
+
+    height:2px;
+
+    background:#ef6b1d;
+
+    transition:.35s;
+
+}
+
+.footer a:hover{
+
+    color:#fff;
+
+}
+
+.footer a:hover::after{
+
+    width:100%;
+
+}
+
+/* ==========================================
+   BOTTOM
+========================================== */
+
+.footer__bottom{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:20px;
+
+    padding-top:30px;
+
+    color:#8d8d8d;
+
+    font-size:15px;
+
+}
+
+.footer__bottom a{
+
+    color:#bdbdbd;
+
+}
+
+/* ==========================================
+   TOP BUTTON
+========================================== */
+
+.footer__top{
+
+    width:56px;
+
+    height:56px;
+
+    border:none;
+
+    border-radius:50%;
+
+    cursor:pointer;
+
+    background:#ef6b1d;
+
+    color:#fff;
+
+    font-size:22px;
+
+    font-weight:bold;
+
+    transition:
+        transform .35s,
+        box-shadow .35s;
+
+    box-shadow:
+
+        0 15px 35px rgba(239,107,29,.25);
+
+}
+
+.footer__top:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:
+
+        0 25px 45px rgba(239,107,29,.45);
+
+}
+
+/* ==========================================
+   ANIMATION
+========================================== */
+
+.footer__about,
+.footer__menu,
+.footer__contacts{
+
+    opacity:0;
+
+    transform:translateY(50px);
+
+    transition:
+
+        opacity .8s ease,
+        transform .8s ease;
+
+}
+
+.footer.is-visible .footer__about{
+
+    opacity:1;
+
+    transform:none;
+
+}
+
+.footer.is-visible .footer__menu{
+
+    opacity:1;
+
+    transform:none;
+
+    transition-delay:.15s;
+
+}
+
+.footer.is-visible .footer__contacts{
+
+    opacity:1;
+
+    transform:none;
+
+    transition-delay:.3s;
+
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media(max-width:1100px){
+
+    .footer__grid{
+
+        grid-template-columns:1fr;
+
+        gap:50px;
+
+    }
+
+    .footer__about{
+
+        text-align:center;
+
+    }
+
+    .footer__about p{
+
+        margin:0 auto;
+
+    }
+
+    .footer__logo{
+
+        margin:0 auto 30px;
+
+    }
+
+    .footer__menu,
+    .footer__contacts{
+
+        align-items:center;
+
+    }
+
+    .footer__bottom{
+
+        flex-direction:column;
+
+    }
+
+}
+
+@media(max-width:700px){
+
+    .footer{
+
+        padding:70px 0 30px;
+
+    }
+
+    .footer__about h3{
+
+        font-size:24px;
+
+    }
+
+    .footer h4{
+
+        font-size:18px;
+
+    }
+
+    .footer__top{
+
+        width:50px;
+
+        height:50px;
+
+        font-size:20px;
+
+    }
+
+}

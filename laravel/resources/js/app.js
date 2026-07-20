@@ -4,6 +4,7 @@ import './comparison';
 import './stats.js';
 import './cta.js';
 import './modal';
+import './footer';
 
 import 'swiper/css';
 

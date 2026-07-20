@@ -5,6 +5,7 @@ namespace App\Platform\Builder\Registry;
 use App\Platform\Builder\Blocks\ComparisonBlock;
 use App\Platform\Builder\Blocks\CtaBlock;
 use App\Platform\Builder\Blocks\FeaturesBlock;
+use App\Platform\Builder\Blocks\FooterBlock;
 use App\Platform\Builder\Blocks\GalleryBlock;
 use App\Platform\Builder\Blocks\HeroBlock;
 use App\Platform\Builder\Blocks\ProjectsBlock;
@@ -24,6 +25,7 @@ final class BuilderRegistry
             ProjectsBlock::make(),
             ComparisonBlock::make(),
             CtaBlock::make(),
+            FooterBlock::make(),
         ];
     }
 }
