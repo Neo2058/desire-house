@@ -37,54 +37,12 @@
 
             <div class="cta__right">
 
-                <form
-                    class="cta-form"
-                    id="lead-form"
-                >
-                    @csrf
-
-                    <input
-                        type="hidden"
-                        name="source"
-                        value="cta"
-                    />
-
-                    <input
-                        type="text"
-                        name="name"
-                        placeholder="Ваше имя"
-                    >
-
-                    <input
-                        type="tel"
-                        name="phone"
-                        placeholder="Телефон"
-                    >
-
-                    <select name="object_type">
-
-                        @foreach($block['object_types'] ?? [] as $type)
-
-                            <option value="{{ $type }}">
-                                {{ $type }}
-                            </option>
-
-                        @endforeach
-
-                    </select>
-
-                    <button type="submit">
-
-                        {{ $block['button_text'] ?? 'Получить расчёт' }}
-
-                    </button>
-
-                    <span class="button-loader">
-                        Отправка...
-                    </span>
-
-
-                </form>
+                <x-lead-form
+                    theme="dark"
+                    :object-types="$block['object_types'] ?? []"
+                    :button-text="$block['button_text'] ?? 'Получить расчёт'"
+                    source="cta"
+                />
 
             </div>
 

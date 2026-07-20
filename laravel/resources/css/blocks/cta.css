@@ -427,7 +427,7 @@
 
 }
 
-.cta-form{
+.cta .cta-form{
 
     opacity:0;
 
@@ -440,7 +440,7 @@
 
 }
 
-.cta-form>*{
+.cta .cta-form>*{
 
     opacity:0;
 
@@ -452,7 +452,7 @@
 
 }
 
-.cta-form:hover{
+.cta .cta-form:hover{
 
     transform:translateY(-6px);
 
@@ -573,5 +573,97 @@
     left:170%;
 
     transition:left .8s ease;
+
+}
+
+.cta-form--light{
+
+    background:#ffffff;
+
+    border:1px solid #e5e5e5;
+
+    box-shadow:
+        0 25px 60px rgba(0,0,0,.12);
+
+}
+
+.cta-form--light::before{
+
+    display:none;
+
+}
+
+.cta-form--light input,
+.cta-form--light select{
+
+    background:#ffffff;
+
+    color:#222;
+
+    border:1px solid #d8d8d8;
+
+}
+
+.cta-form--light input::placeholder{
+
+    color:#888;
+
+}
+
+.cta-form--light input:hover,
+.cta-form--light select:hover{
+
+    background:#fafafa;
+
+}
+
+.cta-form--light input:focus,
+.cta-form--light select:focus{
+
+    border-color:#ef6b1d;
+
+    background:#fff;
+
+}
+
+/* ===============================
+   VALIDATION
+================================ */
+
+.form-group{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:8px;
+
+}
+
+.form-error{
+
+    min-height:18px;
+
+    color:#ff6969;
+
+    font-size:13px;
+
+    line-height:1.3;
+
+}
+
+.form-group.error input,
+.form-group.error select{
+
+    border-color:#ff5555;
+
+    box-shadow:0 0 12px rgba(255,85,85,.25);
+
+}
+
+.form-group.success input,
+.form-group.success select{
+
+    border-color:#38c172;
 
 }

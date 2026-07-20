@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Lead;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class LeadController extends Controller
 {
@@ -14,36 +15,63 @@ class LeadController extends Controller
         $data = $request->validate([
 
             'name' => [
-                'nullable',
+                'required',
                 'string',
-                'max:255'
+                'min:2',
+                'max:50',
+                'regex:/^[\p{L}\s\-]+$/u',
             ],
 
             'phone' => [
                 'required',
-                'string',
-                'max:50'
+                'regex:/^\+?[0-9\s\-\(\)]{10,20}$/',
             ],
 
             'object_type' => [
-                'nullable',
-                'string'
+                'required',
+                Rule::in([
+                    'Дом',
+                    'Фундамент',
+                    'Баня',
+                    'Гараж',
+                    'Пристройка',
+                    'Терраса',
+                    'Другое',
+                ]),
             ],
+
+            'source' => [
+                'nullable',
+                'string',
+                'max:50',
+            ],
+
+        ], [
+
+            'name.required' => 'Введите имя.',
+
+            'name.regex' => 'Имя должно содержать только буквы.',
+
+            'phone.required' => 'Введите телефон.',
+
+            'phone.regex' => 'Введите корректный номер телефона.',
 
         ]);
 
 
         Lead::create([
 
-            'name' => $data['name'] ?? null,
+            'name' => $data['name'],
 
             'phone' => $data['phone'],
 
-            'object_type' => $data['object_type'] ?? null,
+            'object_type' => $data['object_type'],
 
-            'source' => 'cta',
+            'source' => $data['source'] ?? 'site',
 
             'status' => 'new',
+
+            'processed' => false,
 
         ]);
 

@@ -1,0 +1,171 @@
+.lead-modal{
+
+    position:fixed;
+
+    inset:0;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transition:.35s;
+
+    z-index:9999;
+
+}
+
+.lead-modal.active{
+
+    opacity:1;
+
+    visibility:visible;
+
+}
+
+.lead-modal__overlay{
+
+    position:absolute;
+
+    inset:0;
+
+    background:rgba(0,0,0,.65);
+
+}
+
+.lead-modal__window{
+
+    position:relative;
+
+    z-index:2;
+
+    width:min(560px,92vw);
+
+    background:#fff;
+
+    border-radius:20px;
+
+    padding:40px;
+
+    transform:translateY(40px);
+
+    transition:.35s;
+
+}
+
+.lead-modal.active .lead-modal__window{
+
+    transform:none;
+
+}
+
+.lead-modal__close{
+
+    position:absolute;
+
+    top:15px;
+
+    right:15px;
+
+    width:42px;
+
+    height:42px;
+
+    border:none;
+
+    background:none;
+
+    font-size:34px;
+
+    cursor:pointer;
+
+}
+
+.lead-modal__header{
+
+    text-align:center;
+
+    margin-bottom:30px;
+
+}
+
+.lead-modal__header h2{
+
+    margin:0 0 10px;
+
+}
+
+.lead-modal__header p{
+
+    margin:0;
+
+}
+
+/* ==========================================
+   Светлая тема формы
+========================================== */
+
+.cta-form.light{
+
+    background:#fff;
+
+    border:1px solid #e5e5e5;
+
+    box-shadow:0 20px 60px rgba(0,0,0,.08);
+
+}
+
+.cta-form.light input,
+.cta-form.light select{
+
+    background:#fff;
+
+    color:#222;
+
+    border:1px solid #ddd;
+
+}
+
+.cta-form.light input::placeholder{
+
+    color:#888;
+
+}
+
+.cta-form.light input:focus,
+.cta-form.light select:focus{
+
+    border-color:#ef6b1d;
+
+}
+
+.cta-form.light button{
+
+    background:#ef6b1d;
+
+    color:#fff;
+
+}
+
+.lead-modal__header h2{
+
+    color:#111;
+
+}
+
+.lead-modal__header p{
+
+    color:#666;
+
+}
+
+.lead-modal__close{
+
+    color:#111;
+
+}

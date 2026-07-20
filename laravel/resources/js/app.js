@@ -3,6 +3,7 @@ import { Navigation } from 'swiper/modules';
 import './comparison';
 import './stats.js';
 import './cta.js';
+import './modal';
 
 import 'swiper/css';
 

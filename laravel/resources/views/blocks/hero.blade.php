@@ -21,14 +21,14 @@
                 <a href="#">Услуги</a>
                 <a href="#">Наши работы</a>
                 <a href="#">О нас</a>
-                <a href="#">Этапы работ</a>
+                <a href="#">Как мы работаем</a>
                 <a href="#">Контакты</a>
 
             </nav>
 
             <div class="hero__contacts">
-                <a href="tel:+79999999999" class="hero__phone">
-                    <span>+7</span><span> </span><span>(999)</span><span> </span><span>999-99-99</span>
+                <a href="tel:+79309743240" class="hero__phone">
+                    <span>+7</span><span> </span><span>(930)</span><span> </span><span>974-32-40</span>
                 </a>
                 <div class="hero__messengers">
                     Telegram / WhatsApp
@@ -66,14 +66,13 @@
             @endif
 
             @if(!empty($block['button_text']))
-                <a
-                    href="{{ $block['button_url'] }}"
-                    class="hero__button"
-                >
-
-                    {{ $block['button_text'] }}
-
-                </a>
+                    <a
+                        href="#"
+                        class="hero__button"
+                        data-open-lead
+                    >
+                        {{ $block['button_text'] }}
+                    </a>
             @endif
 
         </div>

@@ -12,11 +12,12 @@
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
+
 <body class="bg-white text-gray-900 antialiased">
 
 
 @yield('content')
 
-
+<x-lead-modal />
 </body>
 </html>
