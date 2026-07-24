@@ -12,7 +12,14 @@
 
             <a href="/" class="hero__logo">
 
-                <img src="/images/logo.png" alt="Desire House">
+                @if($logo)
+
+                    <img
+                        src="{{ $logo }}"
+                        alt="{{ $settings?->company_name }}"
+                    >
+
+                @endif
 
             </a>
 
@@ -44,12 +51,41 @@
             </button>
 
             <div class="hero__contacts">
-                <a href="tel:+79309743240" class="hero__phone">
-                    <span>+7</span><span> </span><span>(930)</span><span> </span><span>974-32-40</span>
-                </a>
-                <div class="hero__messengers">
-                    Telegram / WhatsApp
-                </div>
+                @if($phone)
+
+                    <a
+                        href="tel:{{ preg_replace('/\D/', '', $phone) }}"
+                        class="hero__phone"
+                    >
+                        {{ $phone }}
+                    </a>
+
+                @endif
+                    <div class="hero__messengers">
+
+                        @if($telegram)
+
+                            <a
+                                href="{{ $telegram }}"
+                                target="_blank"
+                            >
+                                Telegram
+                            </a>
+
+                        @endif
+
+                        @if($whatsapp)
+
+                            <a
+                                href="{{ $whatsapp }}"
+                                target="_blank"
+                            >
+                                WhatsApp
+                            </a>
+
+                        @endif
+
+                    </div>
             </div>
 
         </div>
@@ -93,14 +129,16 @@
 
             <div class="mobile-menu__contacts">
 
-                <a
-                    href="tel:+79309743240"
-                    class="mobile-menu__phone"
-                >
+                @if($phone)
 
-                    +7 (930) 974-32-40
+                    <a
+                        href="tel:{{ preg_replace('/\D/', '', $phone) }}"
+                        class="hero__phone"
+                    >
+                        {{ $phone }}
+                    </a>
 
-                </a>
+                @endif
 
                 <div class="mobile-menu__messengers">
 

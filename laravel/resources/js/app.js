@@ -5,6 +5,8 @@ import './stats.js';
 import './cta.js';
 import './modal';
 import './footer';
+import "./hero";
+import './services-grid';
 
 import 'swiper/css';
 

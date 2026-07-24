@@ -8,6 +8,7 @@ use App\Platform\Builder\Providers\GalleryProvider;
 use App\Platform\Builder\Providers\HeroProvider;
 use App\Platform\Builder\Providers\StatsProvider;
 use App\Platform\Builder\Providers\FooterProvider;
+use App\Platform\Builder\Providers\InnerHeroProvider;
 
 class BuilderRenderer
 {
@@ -22,7 +23,7 @@ class BuilderRenderer
 
                     'hero' => HeroProvider::make($block['data']),
 
-                    'services' => ServicesProvider::make($block['data']),
+                    'services', 'services_grid' => ServicesProvider::make($block['data']),
 
                     'projects' => ProjectsProvider::make(
                         $block['data'],
@@ -34,6 +35,8 @@ class BuilderRenderer
                     'stats' => StatsProvider::make($block['data']),
 
                     'footer' => FooterProvider::make($block['data']),
+
+                    'inner_hero' => InnerHeroProvider::make($block['data']),
 
 
                     default => [

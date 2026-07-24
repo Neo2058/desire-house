@@ -11,6 +11,8 @@ use App\Platform\Builder\Blocks\HeroBlock;
 use App\Platform\Builder\Blocks\ProjectsBlock;
 use App\Platform\Builder\Blocks\ServicesBlock;
 use App\Platform\Builder\Blocks\StatsBlock;
+use App\Platform\Builder\Blocks\InnerHeroBlock;
+use App\Platform\Builder\Blocks\ServicesGridBlock;
 
 final class BuilderRegistry
 {
@@ -18,6 +20,7 @@ final class BuilderRegistry
     {
         return [
             HeroBlock::make(),
+            InnerHeroBlock::make(),
             FeaturesBlock::make(),
             StatsBlock::make(),
             ServicesBlock::make(),
@@ -26,6 +29,7 @@ final class BuilderRegistry
             ComparisonBlock::make(),
             CtaBlock::make(),
             FooterBlock::make(),
+            ServicesGridBlock::make(),
         ];
     }
 }

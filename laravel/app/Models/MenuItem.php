@@ -31,4 +31,17 @@ class MenuItem extends Model
     {
         return $this->belongsTo(Page::class);
     }
+
+    public function getResolvedUrlAttribute(): string
+    {
+        if ($this->page) {
+
+            return $this->page->slug === 'home'
+                ? '/'
+                : '/' . $this->page->slug;
+
+        }
+
+        return $this->url ?: '#';
+    }
 }

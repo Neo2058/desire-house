@@ -3,7 +3,7 @@
 namespace App\Platform\Builder\Providers;
 
 use App\Models\Image;
-use App\Platform\Builder\Providers\HeaderProvider;
+use App\Platform\Builder\Providers\MenuProvider;
 
 final class HeroProvider extends BaseProvider
 {
@@ -20,7 +20,10 @@ final class HeroProvider extends BaseProvider
             $person = Image::find($block['person_image_id']);
         }
 
-        $header = HeaderProvider::make();
+        $site = SiteSettingsProvider::make();
+
+        $menu = MenuProvider::make();
+
 
         return [
 
@@ -30,7 +33,21 @@ final class HeroProvider extends BaseProvider
 
             'person' => $person?->url,
 
-            'menu' => $header['menu'],
+            'logo' => $site['logo'] ?? null,
+
+            'favicon' => $site['favicon'] ?? null,
+
+            'settings' => $site['settings'] ?? null,
+
+            'phone' => $site['settings']?->phone,
+
+            'telegram' => $site['settings']?->telegram,
+
+            'whatsapp' => $site['settings']?->whatsapp,
+
+            'email' => $site['settings']?->email,
+
+            'menu' => $menu,
 
         ];
     }

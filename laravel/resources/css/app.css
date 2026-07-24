@@ -13,6 +13,8 @@
 @import "./blocks/cta.css";
 @import "components/modal.css";
 @import "./blocks/hero-mobile.css";
+@import "./blocks/inner-hero.css";
+@import "./blocks/services-grid.css";
 
 .lead-success{
 
