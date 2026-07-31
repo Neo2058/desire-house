@@ -19,15 +19,15 @@ class MenuItemResource extends Resource
 {
     protected static ?string $model = MenuItem::class;
 
+    protected static string|\UnitEnum|null $navigationGroup = 'Настройки';
+
     protected static ?string $navigationLabel = 'Меню';
 
     protected static ?string $modelLabel = 'Пункт меню';
 
     protected static ?string $pluralModelLabel = 'Меню';
 
-    protected static string|\UnitEnum|null $navigationGroup = '📄 Контент';
-
-    protected static ?int $navigationSort = 2;
+    protected static ?int $navigationSort = 4;
 
     protected static string|null|BackedEnum $navigationIcon = 'heroicon-o-bars-3';
 

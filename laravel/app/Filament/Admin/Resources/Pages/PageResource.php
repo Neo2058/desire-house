@@ -19,17 +19,29 @@ class PageResource extends Resource
 {
     protected static ?string $model = Page::class;
 
+    protected static string|null|\UnitEnum $navigationGroup = 'Контент';
+
     protected static ?string $navigationLabel = 'Страницы';
 
     protected static ?string $modelLabel = 'Страница';
 
     protected static ?string $pluralModelLabel = 'Страницы';
 
-    protected static string|null|\UnitEnum $navigationGroup = '📄 Контент';
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedDocumentText;
 
     protected static ?int $navigationSort = 1;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedDocumentText;
+//    protected static ?string $navigationLabel = 'Страницы';
+//
+//    protected static ?string $modelLabel = 'Страница';
+//
+//    protected static ?string $pluralModelLabel = 'Страницы';
+//
+//    protected static string|null|\UnitEnum $navigationGroup = '📄 Контент';
+//
+//    protected static ?int $navigationSort = 1;
+
+//    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedDocumentText;
 
     protected static ?string $recordTitleAttribute = 'Pages';
 

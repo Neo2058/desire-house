@@ -19,6 +19,8 @@ class LeadResource extends Resource
 
     protected static ?string $model = Lead::class;
 
+    protected static string|null|\UnitEnum $navigationGroup = 'Продажи';
+
     protected static ?string $navigationLabel = 'Заявки';
 
     protected static ?string $modelLabel = 'Заявка';
@@ -27,9 +29,8 @@ class LeadResource extends Resource
 
     protected static string|null|BackedEnum $navigationIcon = 'heroicon-o-inbox';
 
-    protected static string|null|\UnitEnum $navigationGroup = 'CRM';
-
     protected static ?int $navigationSort = 1;
+
 
     public static function form(Schema $schema): Schema
     {

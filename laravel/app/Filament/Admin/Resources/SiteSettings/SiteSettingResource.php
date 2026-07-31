@@ -17,8 +17,15 @@ use Filament\Tables\Table;
 class SiteSettingResource extends Resource
 {
     protected static ?string $model = SiteSetting::class;
+    protected static string|null|\UnitEnum $navigationGroup = 'Настройки';
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static ?string $navigationLabel = 'Сайт';
+
+    protected static string|null|BackedEnum $navigationIcon = 'heroicon-o-cog-6-tooth';
+
+    protected static ?int $navigationSort = 4;
+
+//    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
     public static function form(Schema $schema): Schema
     {
@@ -50,4 +57,5 @@ class SiteSettingResource extends Resource
     {
         return static::getModel()::count() === 0;
     }
+
 }

@@ -18,17 +18,24 @@ class ProjectResource extends Resource
 {
     protected static ?string $model = Project::class;
 
+    protected static string|null|\UnitEnum $navigationGroup = 'Контент';
+
     protected static ?string $navigationLabel = 'Проекты';
 
-    protected static ?string $modelLabel = 'Проект';
-
-    protected static ?string $pluralModelLabel = 'Проекты';
-
-    protected static string|null|\UnitEnum $navigationGroup = '📄 Контент';
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedHomeModern;
 
     protected static ?int $navigationSort = 3;
+//    protected static ?string $navigationLabel = 'Проекты';
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedHomeModern;
+//    protected static ?string $modelLabel = 'Проект';
+
+//    protected static ?string $pluralModelLabel = 'Проекты';
+
+//    protected static string|null|\UnitEnum $navigationGroup = '📄 Контент';
+
+//    protected static ?int $navigationSort = 3;
+
+//    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedHomeModern;
 
     public static function form(Schema $schema): Schema
     {
