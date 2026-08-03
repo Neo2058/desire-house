@@ -1,3 +1,13 @@
+<?php
+
+use Livewire\Component;
+
+new class extends Component
+{
+    //
+};
+?>
+
 <div class="space-y-6">
 
     @foreach($widgets as $widget)
@@ -7,7 +17,7 @@
             $data = $instance->data();
         @endphp
 
-        <div class="rounded-xl border bg-white dark:bg-gray-900 p-6">
+        <div class="rounded-xl bg-white dark:bg-gray-900 p-6 shadow">
 
             <h2 class="text-xl font-bold">
 
