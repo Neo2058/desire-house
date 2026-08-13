@@ -2,17 +2,27 @@
 
 namespace App\CMS\Dashboard\Widgets;
 
-use App\CMS\Dashboard\Contracts\DashboardWidget;
-
-abstract class AbstractWidget implements DashboardWidget
+abstract class AbstractWidget
 {
-    public function visible(): bool
+    abstract public static function key(): string;
+
+    abstract public static function title(): string;
+
+    abstract public function data(): array;
+
+    /**
+     * Ширина виджета в сетке дашборда: full, main, side.
+     */
+    public static function span(): string
     {
-        return true;
+        return 'full';
     }
 
-    public function data(): array
+    /**
+     * Blade-шаблон виджета.
+     */
+    public function view(): string
     {
-        return [];
+        return 'cms.dashboard.widgets.' . static::key();
     }
 }

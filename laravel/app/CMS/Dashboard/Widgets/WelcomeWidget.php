@@ -2,6 +2,9 @@
 
 namespace App\CMS\Dashboard\Widgets;
 
+use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
+
 class WelcomeWidget extends AbstractWidget
 {
     public static function key(): string
@@ -18,11 +21,11 @@ class WelcomeWidget extends AbstractWidget
     {
         return [
 
-            'title' => 'Desire House CMS',
+            'user' => Auth::user()?->name,
 
-            'subtitle' => 'Добро пожаловать в систему управления сайтом.',
+            'company' => 'Desire House CMS',
 
-            'date' => now(),
+            'date' => Carbon::now()->translatedFormat('d F Y'),
 
         ];
     }

@@ -1,5 +1,24 @@
-<x-filament-panels::page>
+<div class="cms-dashboard">
 
-    <livewire:cms-dashboard />
+    @foreach($widgets as $widget)
 
-</x-filament-panels::page>
+        @php
+            $instance = app($widget);
+            $data = $instance->data();
+        @endphp
+
+        <section class="cms-dashboard__widget cms-dashboard__widget--{{ $instance::span() }}">
+
+            @include(
+                $instance->view(),
+                [
+                    'widget' => $instance,
+                    'data' => $data,
+                ]
+            )
+
+        </section>
+
+    @endforeach
+
+</div>

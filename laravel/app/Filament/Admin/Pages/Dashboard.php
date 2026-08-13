@@ -2,9 +2,10 @@
 
 namespace App\Filament\Admin\Pages;
 
-use Filament\Pages\Dashboard as BaseDashboard;
+use App\CMS\Dashboard\Services\DashboardService;
+use Filament\Pages\Page;
 
-class Dashboard extends BaseDashboard
+class Dashboard extends Page
 {
     protected static ?string $title = 'Главная';
 
@@ -12,10 +13,16 @@ class Dashboard extends BaseDashboard
 
     protected static ?int $navigationSort = -100;
 
+    protected static ?string $slug = '';
+
     protected string $view = 'filament.admin.pages.dashboard';
 
-    public function getWidgets(): array
+    public array $widgets = [];
+
+    public function mount(DashboardService $dashboard): void
     {
-        return [];
+        $dashboard->boot();
+
+        $this->widgets = $dashboard->widgets();
     }
 }
