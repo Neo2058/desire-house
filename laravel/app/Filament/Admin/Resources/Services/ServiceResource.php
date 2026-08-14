@@ -18,17 +18,28 @@ class ServiceResource extends Resource
 {
     protected static ?string $model = Service::class;
 
+    protected static string|null|\UnitEnum $navigationGroup = 'Контент';
+
     protected static ?string $navigationLabel = 'Услуги';
 
     protected static ?string $modelLabel = 'Услуга';
 
     protected static ?string $pluralModelLabel = 'Услуги';
 
-    protected static string|null|\UnitEnum $navigationGroup = '📄 Контент';
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedWrenchScrewdriver;
 
     protected static ?int $navigationSort = 2;
+//    protected static ?string $navigationLabel = 'Услуги';
+//
+//    protected static ?string $modelLabel = 'Услуга';
+//
+//    protected static ?string $pluralModelLabel = 'Услуги';
+//
+//    protected static string|null|\UnitEnum $navigationGroup = '📄 Контент';
+//
+//    protected static ?int $navigationSort = 2;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedWrenchScrewdriver;
+//    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedWrenchScrewdriver;
 
     public static function form(Schema $schema): Schema
     {

@@ -24,7 +24,7 @@ class ImageResource extends Resource
 
     protected static ?string $pluralModelLabel = 'Изображения';
 
-    protected static string|null|\UnitEnum $navigationGroup = '📄 Контент';
+    protected static string|null|\UnitEnum $navigationGroup = 'Медиа';
 
     protected static ?int $navigationSort = 5;
 
