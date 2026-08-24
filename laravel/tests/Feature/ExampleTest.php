@@ -2,18 +2,22 @@
 
 namespace Tests\Feature;
 
-// use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class ExampleTest extends TestCase
 {
+    use RefreshDatabase;
+
     /**
      * A basic test example.
      */
-    public function test_the_application_returns_a_successful_response(): void
+    public function test_the_home_page_is_not_found_until_it_is_created(): void
     {
+        config(['setup.enabled' => false]);
+
         $response = $this->get('/');
 
-        $response->assertStatus(200);
+        $response->assertNotFound();
     }
 }

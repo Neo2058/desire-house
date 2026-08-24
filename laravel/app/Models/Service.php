@@ -17,10 +17,6 @@ class Service extends Model
         'sort_order',
     ];
 
-    protected $casts = [
-        'is_published' => 'boolean',
-    ];
-
     public function projects(): BelongsToMany
     {
         return $this->belongsToMany(Project::class);
@@ -30,6 +26,8 @@ class Service extends Model
     {
         return [
             'blocks' => 'array',
+            'is_featured' => 'boolean',
+            'is_published' => 'boolean',
         ];
     }
 }
