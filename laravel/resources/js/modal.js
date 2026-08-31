@@ -10,7 +10,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const close = modal.querySelector('.lead-modal__close');
 
-    function openModal() {
+    function openModal(objectType = '') {
+
+        const select = modal.querySelector('[name="object_type"]');
+
+        if (select && objectType) {
+
+            let option = Array.from(select.options)
+                .find(item => item.value === objectType);
+
+            if (!option) {
+                option = new Option(objectType, objectType);
+                select.add(option);
+            }
+
+            select.value = objectType;
+
+        }
 
         modal.classList.add('active');
 
@@ -32,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             e.preventDefault();
 
-            openModal();
+            openModal(button.dataset.leadObject ?? '');
 
         });
 

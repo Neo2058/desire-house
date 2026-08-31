@@ -10,23 +10,24 @@ final class ServicesProvider
     {
         $mode = $block['mode'] ?? 'all';
         $limit = self::limit($block, $type);
+        $with = self::eagerLoad();
 
         $services = match ($mode) {
 
             'featured' => Service::query()
                 ->where('is_published', true)
                 ->where('is_featured', true)
-                ->with('media')
+                ->with($with)
                 ->orderBy('id')
                 ->when($limit, fn ($query) => $query->limit($limit))
                 ->get(),
 
             'manual' => collect($block['services'] ?? [])
-                ->whenNotEmpty(function ($ids) {
+                ->whenNotEmpty(function ($ids) use ($with) {
                     return Service::query()
                         ->whereIn('id', $ids)
                         ->where('is_published', true)
-                        ->with('media')
+                        ->with($with)
                         ->get()
                         ->sortBy(fn (Service $service) => array_search($service->id, $ids->all()))
                         ->values();
@@ -34,7 +35,7 @@ final class ServicesProvider
 
             default => Service::query()
                 ->where('is_published', true)
-                ->with('media')
+                ->with($with)
                 ->orderBy('id')
                 ->when($limit, fn ($query) => $query->limit($limit))
                 ->get(),
@@ -49,6 +50,16 @@ final class ServicesProvider
         return [
             'block' => $block,
             'services' => $services,
+        ];
+    }
+
+    private static function eagerLoad(): array
+    {
+        return [
+            'media',
+            'projects' => fn ($query) => $query
+                ->where('is_published', true)
+                ->with('media'),
         ];
     }
 

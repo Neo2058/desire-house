@@ -15,6 +15,12 @@ class ServiceController extends Controller
             404
         );
 
+        $service->load([
+            'projects' => fn ($query) => $query
+                ->where('is_published', true)
+                ->with('media'),
+        ]);
+
         $blocks = BuilderRenderer::render(
             ServicePageTemplate::blocks($service),
             $service,
