@@ -4,9 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Service extends Model
+class Service extends Model implements HasMedia
 {
+    use InteractsWithMedia;
+
     protected $fillable = [
         'title',
         'slug',
@@ -15,11 +19,14 @@ class Service extends Model
         'is_published',
         'is_featured',
         'sort_order',
+        'blocks',
     ];
 
-    protected $casts = [
-        'is_published' => 'boolean',
-    ];
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('cover')
+            ->singleFile();
+    }
 
     public function projects(): BelongsToMany
     {
@@ -30,6 +37,8 @@ class Service extends Model
     {
         return [
             'blocks' => 'array',
+            'is_published' => 'boolean',
+            'is_featured' => 'boolean',
         ];
     }
 }

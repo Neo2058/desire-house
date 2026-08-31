@@ -32,14 +32,22 @@ final class ProjectsProvider extends BaseProvider
             'current_service' => $model instanceof Service
                 ? $model->projects()
                     ->where('is_published', true)
+                    ->with('media')
                     ->get()
                 : collect(),
 
             default => Project::query()
                 ->where('is_published', true)
+                ->with('media')
                 ->limit($block['limit'] ?? 6)
                 ->get(),
         };
+
+        if (! empty($block['exclude_current']) && $model instanceof Project) {
+            $projects = $projects
+                ->where('id', '!=', $model->id)
+                ->values();
+        }
 
         return [
             'block' => $block,

@@ -15,6 +15,10 @@
 @import "./blocks/hero-mobile.css";
 @import "./blocks/inner-hero.css";
 @import "./blocks/services-grid.css";
+@import "./blocks/service-about.css";
+@import "./blocks/project-about.css";
+@import "./blocks/project-gallery.css";
+@import "./blocks/works-gallery.css";
 
 .lead-success{
 

@@ -1,3 +1,4 @@
+@if($projects->isNotEmpty())
 <section class="projects">
 
     <div class="container">
@@ -85,22 +86,25 @@
 
         </div>
 
-        <div class="projects__navigation">
+        @if($projects->count() > 1)
+            <div class="projects__navigation">
 
-            <button class="projects__button projects-prev">
+                <button class="projects__button projects-prev">
 
-                ←
+                    ←
 
-            </button>
+                </button>
 
-            <button class="projects__button projects-next">
+                <button class="projects__button projects-next">
 
-                →
+                    →
 
-            </button>
+                </button>
 
-        </div>
+            </div>
+        @endif
 
     </div>
 
 </section>
+@endif

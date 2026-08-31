@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Service;
 use App\Platform\Builder\Renderers\BuilderRenderer;
+use App\Platform\Builder\Support\ServicePageTemplate;
 
 class ServiceController extends Controller
 {
@@ -15,7 +16,7 @@ class ServiceController extends Controller
         );
 
         $blocks = BuilderRenderer::render(
-            $service->blocks ?? [],
+            ServicePageTemplate::blocks($service),
             $service,
         );
 

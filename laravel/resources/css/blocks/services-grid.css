@@ -84,6 +84,18 @@
 
 }
 
+.services-grid__media{
+
+    width:100%;
+
+    height:260px;
+
+    overflow:hidden;
+
+    background:#ececec;
+
+}
+
 .services-grid__card img{
 
     width:100%;

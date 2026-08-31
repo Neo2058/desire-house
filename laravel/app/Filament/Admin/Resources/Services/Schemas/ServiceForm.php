@@ -4,6 +4,7 @@ namespace App\Filament\Admin\Resources\Services\Schemas;
 
 use App\Platform\Builder\Registry\BuilderRegistry;
 use Filament\Forms\Components\Builder;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
@@ -22,6 +23,11 @@ class ServiceForm
 
                 TextInput::make('slug')
                     ->required(),
+
+                SpatieMediaLibraryFileUpload::make('cover')
+                    ->collection('cover')
+                    ->image()
+                    ->label('Обложка'),
 
                 Textarea::make('description'),
 

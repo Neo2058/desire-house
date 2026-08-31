@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use App\Platform\Builder\Renderers\BuilderRenderer;
+use App\Platform\Builder\Support\ProjectPageTemplate;
 
 class ProjectController extends Controller
 {
@@ -10,6 +12,19 @@ class ProjectController extends Controller
     {
         abort_unless($project->is_published, 404);
 
-        return view('projects.show', compact('project'));
+        $project->load('services');
+
+        $blocks = BuilderRenderer::render(
+            ProjectPageTemplate::blocks($project),
+            $project,
+        );
+
+        return view(
+            'projects.show',
+            compact(
+                'project',
+                'blocks',
+            )
+        );
     }
 }

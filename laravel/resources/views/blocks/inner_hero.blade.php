@@ -7,15 +7,34 @@
 
     <div class="inner-hero__overlay"></div>
 
+    <x-site-header
+        :logo="$logo ?? null"
+        :settings="$settings ?? null"
+        :menu="$menu ?? []"
+        :phone="$phone ?? null"
+        :telegram="$telegram ?? null"
+        :whatsapp="$whatsapp ?? null"
+    />
+
     <div class="container">
 
         @if(!empty($block['show_breadcrumbs']))
 
             <nav class="breadcrumbs">
 
-                <a href="/">
+                <a href="{{ url('/') }}">
                     Главная
                 </a>
+
+                @if(!empty($block['breadcrumb_parent_title']))
+
+                    <span>/</span>
+
+                    <a href="{{ url($block['breadcrumb_parent_url'] ?? '/uslugi') }}">
+                        {{ $block['breadcrumb_parent_title'] }}
+                    </a>
+
+                @endif
 
                 <span>/</span>
 

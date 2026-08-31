@@ -5,6 +5,7 @@ namespace App\Platform\Builder\Blocks;
 use App\Models\Image;
 use Filament\Forms\Components\Builder\Block;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 
 class InnerHeroBlock extends BaseBlock
@@ -31,7 +32,16 @@ class InnerHeroBlock extends BaseBlock
 
                 Toggle::make('show_breadcrumbs')
                     ->label('Показывать хлебные крошки')
-                    ->default(true),
+                    ->default(true)
+                    ->live(),
+
+                TextInput::make('breadcrumb_parent_title')
+                    ->label('Родитель в крошках')
+                    ->visible(fn ($get) => $get('show_breadcrumbs')),
+
+                TextInput::make('breadcrumb_parent_url')
+                    ->label('URL родителя')
+                    ->visible(fn ($get) => $get('show_breadcrumbs')),
 
             ]);
     }

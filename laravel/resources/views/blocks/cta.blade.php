@@ -41,7 +41,7 @@
                     theme="dark"
                     :object-types="$block['object_types'] ?? []"
                     :button-text="$block['button_text'] ?? 'Получить расчёт'"
-                    source="cta"
+                    :source="$block['source'] ?? 'cta'"
                 />
 
             </div>

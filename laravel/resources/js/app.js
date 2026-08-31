@@ -7,6 +7,8 @@ import './modal';
 import './footer';
 import "./hero";
 import './services-grid';
+import './service-about';
+import './project-gallery';
 
 import 'swiper/css';
 
@@ -69,39 +71,43 @@ document.addEventListener('DOMContentLoaded', () => {
 
     cards.forEach(card => observer.observe(card));
 
-    new Swiper('.projects-swiper', {
+    if (document.querySelector('.projects-swiper')) {
 
-        modules: [Navigation],
+        new Swiper('.projects-swiper', {
 
-        slidesPerView: 2,
+            modules: [Navigation],
 
-        spaceBetween: 24,
+            slidesPerView: 2,
 
-        navigation: {
+            spaceBetween: 24,
 
-            nextEl: '.projects-next',
+            navigation: {
 
-            prevEl: '.projects-prev',
+                nextEl: '.projects-next',
 
-        },
-
-        breakpoints: {
-
-            0: {
-
-                slidesPerView: 1,
+                prevEl: '.projects-prev',
 
             },
 
-            900: {
+            breakpoints: {
 
-                slidesPerView: 2,
+                0: {
+
+                    slidesPerView: 1,
+
+                },
+
+                900: {
+
+                    slidesPerView: 2,
+
+                }
 
             }
 
-        }
+        });
 
-    });
+    }
 
 });
 

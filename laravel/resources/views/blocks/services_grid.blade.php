@@ -2,6 +2,7 @@
     use Illuminate\Support\Str;
 @endphp
 
+@if($services->isNotEmpty())
 <section class="services-grid">
 
     <div class="container">
@@ -23,18 +24,18 @@
             @foreach($services as $service)
 
                 <a
-                    href="/uslugi/{{ $service->slug }}"
+                    href="{{ url('/uslugi/'.$service->slug) }}"
                     class="services-grid__card"
                 >
 
-                    @if($service->cover)
-
-                        <img
-                            src="{{ $service->cover->url }}"
-                            alt="{{ $service->title }}"
-                        >
-
-                    @endif
+                    <div class="services-grid__media">
+                        @if($service->getFirstMediaUrl('cover'))
+                            <img
+                                src="{{ $service->getFirstMediaUrl('cover') }}"
+                                alt="{{ $service->title }}"
+                            >
+                        @endif
+                    </div>
 
                     <div class="services-grid__content">
 
@@ -42,7 +43,7 @@
                             {{ $service->title }}
                         </h3>
 
-                        @if(!empty($block['show_description']))
+                        @if(!empty($block['show_description']) && $service->description)
                             <p>
                                 {{ Str::limit(strip_tags($service->description), 120) }}
                             </p>
@@ -59,3 +60,4 @@
     </div>
 
 </section>
+@endif

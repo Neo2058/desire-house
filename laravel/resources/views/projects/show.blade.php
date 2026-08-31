@@ -1,49 +1,14 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>{{ $project->title }}</title>
-</head>
-<body>
+@extends('layouts.app')
 
-<h1>{{ $project->title }}</h1>
+@section('title', $project->title)
 
-@if($project->getFirstMediaUrl('cover'))
+@section('content')
 
-    <img
-        src="{{ $project->getFirstMediaUrl('cover') }}"
-        alt="{{ $project->title }}"
-        width="500"
-    >
-
-@endif
-
-@if($project->city)
-    <p><strong>Город:</strong> {{ $project->city }}</p>
-@endif
-
-@if($project->area)
-    <p><strong>Площадь:</strong> {{ $project->area }} м²</p>
-@endif
-
-@if($project->description)
-    <p>{{ $project->description }}</p>
-@endif
-
-@if($project->getMedia('gallery')->count())
-
-    <h2>Галерея</h2>
-
-    @foreach($project->getMedia('gallery') as $image)
-
-        <img
-            src="{{ $image->getUrl() }}"
-            width="300"
-            alt=""
-        >
-
+    @foreach($blocks as $block)
+        @includeIf(
+            'blocks.'.$block['type'],
+            $block['viewData']
+        )
     @endforeach
 
-@endif
-
-</body>
-</html>
+@endsection

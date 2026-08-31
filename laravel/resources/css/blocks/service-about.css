@@ -1,0 +1,343 @@
+.service-about{
+
+    background:#f7f7f7;
+
+    padding:110px 0;
+
+}
+
+.service-about .container{
+
+    max-width:1280px;
+
+    margin:0 auto;
+
+    padding:0 20px;
+
+}
+
+.service-about__grid{
+
+    display:grid;
+
+    grid-template-columns:1.05fr .95fr;
+
+    gap:70px;
+
+    align-items:center;
+
+}
+
+.service-about__content,
+.service-about__aside{
+
+    opacity:0;
+
+    transform:translateY(40px);
+
+    transition:
+        opacity .7s ease,
+        transform .7s cubic-bezier(.2,.8,.2,1);
+
+}
+
+.service-about.is-visible .service-about__content,
+.service-about.is-visible .service-about__aside{
+
+    opacity:1;
+
+    transform:none;
+
+}
+
+.service-about.is-visible .service-about__aside{
+
+    transition-delay:.15s;
+
+}
+
+.service-about__line{
+
+    display:block;
+
+    width:60px;
+
+    height:3px;
+
+    background:#ef6b1d;
+
+    margin-bottom:22px;
+
+}
+
+.service-about__label{
+
+    margin:0 0 14px;
+
+    color:#ef6b1d;
+
+    text-transform:uppercase;
+
+    letter-spacing:.18em;
+
+    font-size:14px;
+
+    font-weight:700;
+
+}
+
+.service-about__content h2{
+
+    margin:0;
+
+    color:#111;
+
+    font-size:42px;
+
+    font-weight:800;
+
+    line-height:1.15;
+
+    text-transform:uppercase;
+
+}
+
+.service-about__content h3{
+
+    margin:16px 0 0;
+
+    color:#ef6b1d;
+
+    font-size:24px;
+
+    font-weight:700;
+
+}
+
+.service-about__text{
+
+    margin-top:24px;
+
+    color:#555;
+
+    font-size:18px;
+
+    line-height:1.8;
+
+    max-width:560px;
+
+}
+
+.service-about .hero__button{
+
+    margin-top:36px;
+
+}
+
+.service-about__photo{
+
+    position:relative;
+
+}
+
+.service-about__photo::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:22px -18px -18px 22px;
+
+    border:2px solid #ef6b1d;
+
+    border-radius:22px;
+
+    z-index:0;
+
+}
+
+.service-about__photo img{
+
+    position:relative;
+
+    z-index:1;
+
+    display:block;
+
+    width:100%;
+
+    height:460px;
+
+    object-fit:cover;
+
+    border-radius:22px;
+
+    box-shadow:
+        0 18px 45px rgba(0,0,0,.12);
+
+}
+
+.service-about__card{
+
+    background:#171717;
+
+    color:#fff;
+
+    border-radius:22px;
+
+    padding:42px;
+
+    box-shadow:
+        0 18px 45px rgba(0,0,0,.12);
+
+}
+
+.service-about__card h3{
+
+    margin:0;
+
+    font-size:32px;
+
+    font-weight:800;
+
+    text-transform:uppercase;
+
+    line-height:1.2;
+
+}
+
+.service-about__card p{
+
+    margin:18px 0 0;
+
+    color:#b8b8b8;
+
+    font-size:16px;
+
+    line-height:1.7;
+
+}
+
+.service-about__phone{
+
+    display:inline-block;
+
+    margin-top:28px;
+
+    color:#fff;
+
+    font-size:26px;
+
+    font-weight:700;
+
+    text-decoration:none;
+
+    transition:color .25s;
+
+}
+
+.service-about__phone:hover{
+
+    color:#ef6b1d;
+
+}
+
+.service-about__messengers{
+
+    display:flex;
+
+    gap:22px;
+
+    margin-top:14px;
+
+    color:#ef6b1d;
+
+    font-size:14px;
+
+    font-weight:700;
+
+    text-transform:uppercase;
+
+    letter-spacing:.06em;
+
+}
+
+.service-about__messengers a{
+
+    color:inherit;
+
+    text-decoration:none;
+
+    transition:color .25s;
+
+}
+
+.service-about__messengers a:hover{
+
+    color:#fff;
+
+}
+
+.service-about__card .hero__button{
+
+    margin-top:32px;
+
+}
+
+@media (max-width:1100px){
+
+    .service-about__grid{
+
+        grid-template-columns:1fr;
+
+        gap:48px;
+
+    }
+
+    .service-about__photo img{
+
+        height:360px;
+
+    }
+
+}
+
+@media (max-width:760px){
+
+    .service-about{
+
+        padding:80px 0;
+
+    }
+
+    .service-about__content h2{
+
+        font-size:32px;
+
+    }
+
+    .service-about__card{
+
+        padding:32px;
+
+    }
+
+    .service-about__card h3{
+
+        font-size:26px;
+
+    }
+
+    .service-about__phone{
+
+        font-size:22px;
+
+    }
+
+    .service-about__photo::after{
+
+        display:none;
+
+    }
+
+}

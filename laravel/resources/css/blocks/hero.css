@@ -57,7 +57,8 @@
     transition: .25s;
 }
 
-.hero__menu a:hover {
+.hero__menu a:hover,
+.hero__menu a.is-active {
     color: #f26b1d;
 }
 
