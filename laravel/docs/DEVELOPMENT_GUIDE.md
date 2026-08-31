@@ -847,6 +847,47 @@ Desire House Platform — это модульная AI-Ready CMS нового п
 
 Это полностью соответствует принципу YAGNI (You Aren't Gonna Need It).
 
+---
+
+## ADR-011 — Шаблоны сущностей для публичных карточек
+
+**Дата:** 2026-08-31
+
+### Контекст
+
+Свободные страницы (`Page`) собираются из JSON Builder. У услуги поле `blocks` часто пустое, у проекта Builder не было вообще. В результате `/uslugi/{slug}` и `/raboty/{slug}` не имели законченного frontend.
+
+### Принятое решение
+
+Карточки моделей собираются runtime-шаблонами, которые эмитируют тот же JSON блоков и проходят через `BuilderRenderer`:
+
+``` text
+ServicePageTemplate      /uslugi/{slug}
+ProjectPageTemplate      /raboty/{slug}
+ProjectIndexTemplate     /raboty
+SiteChrome               общий footer и CTA
+```
+
+Свободные страницы по-прежнему хранят блоки в `pages.blocks` (ADR-004). Каталог `/uslugi` остаётся `Page`. Каталог `/raboty` — шаблон портфолио, не CMS-страница.
+
+### Рассмотренные альтернативы
+
+* Хранить полный набор блоков в JSON каждой услуги и каждого проекта.
+* Рисовать карточки отдельными Blade без Builder.
+* Сделать `/raboty` обычной `Page`.
+
+### Причины выбора
+
+Один runtime Builder, цельная карточка без ручной сборки в админке, возможность добавить extra-блоки услуги поверх шаблона.
+
+### Последствия
+
+* Новые карточки моделей добавляются шаблоном в `app/Platform/Builder/Support`, а не копированием HTML.
+* Runtime-блоки без модели (`project_about`, `project_gallery`, `works_gallery`) не обязаны попадать в Filament Registry.
+* Документ этапа: `docs/Desire_House_CMS_ARCHITECTURE_CHECKPOINT_2.md`.
+
+---
+
 ## Работа с файлами (Media Library)
 
 ### Конфигурация
