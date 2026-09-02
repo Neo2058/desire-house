@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ProjectIndexController;
+use App\Http\Controllers\LlmsTxtController;
+use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\SetupController;
 use App\Http\Controllers\InitialPasswordController;
 
@@ -23,6 +25,14 @@ Route::middleware(['setup.available', 'throttle:5,1'])
         Route::post('/setup', 'store')->name('setup.store');
     });
 
+
+Route::get(
+    '/sitemap.xml',
+    SitemapController::class
+);
+
+Route::get('/llms.txt', [LlmsTxtController::class, 'index']);
+Route::get('/llms-full.txt', [LlmsTxtController::class, 'full']);
 
 Route::post(
     '/lead',

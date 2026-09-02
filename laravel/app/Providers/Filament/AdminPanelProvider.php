@@ -29,7 +29,10 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->brandName('Desire House CMS')
             ->login()
-            ->plugin(FilamentShieldPlugin::make())
+            ->plugin(
+                FilamentShieldPlugin::make()
+                    ->navigationGroup('Настройки')
+            )
             ->colors([
                 'primary' => Color::Orange,
             ])

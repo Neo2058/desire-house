@@ -2,6 +2,7 @@
 
 namespace App\Filament\Admin\Resources\Projects\Schemas;
 
+use App\Filament\Admin\Resources\Concerns\SeoFields;
 use Filament\Schemas\Schema;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
@@ -50,6 +51,8 @@ class ProjectForm
 
                 Toggle::make('is_published')
                     ->default(true),
+
+                SeoFields::make(),
             ]);
     }
 }

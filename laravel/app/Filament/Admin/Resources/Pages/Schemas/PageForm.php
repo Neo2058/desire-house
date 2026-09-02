@@ -2,6 +2,7 @@
 
 namespace App\Filament\Admin\Resources\Pages\Schemas;
 
+use App\Filament\Admin\Resources\Concerns\SeoFields;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Schema;
@@ -23,6 +24,8 @@ class PageForm
 
                 Toggle::make('is_published')
                     ->default(true),
+
+                SeoFields::make(),
 
                 Builder::make('blocks')
                     ->blocks(

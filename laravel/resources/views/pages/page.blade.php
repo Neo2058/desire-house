@@ -1,7 +1,5 @@
 @extends('layouts.app')
 
-@section('title', $page->title)
-
 @section('content')
 
         @foreach($blocks as $block)

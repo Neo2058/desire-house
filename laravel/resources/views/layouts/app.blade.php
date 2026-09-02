@@ -8,15 +8,23 @@
         content="{{ csrf_token() }}"
     >
 
-    <title>@yield('title', config('app.name'))</title>
+    {!! seo($seo ?? null) !!}
+
+    <link
+        rel="alternate"
+        type="text/plain"
+        href="{{ url('/llms.txt') }}"
+        title="LLM information"
+    >
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body class="bg-white text-gray-900 antialiased">
 
-
-@yield('content')
+<main>
+    @yield('content')
+</main>
 
 <x-lead-modal />
 </body>

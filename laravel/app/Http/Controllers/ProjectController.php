@@ -21,10 +21,11 @@ class ProjectController extends Controller
 
         return view(
             'projects.show',
-            compact(
-                'project',
-                'blocks',
-            )
+            [
+                'project' => $project,
+                'blocks' => $blocks,
+                'seo' => $project,
+            ]
         );
     }
 }

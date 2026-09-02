@@ -2,6 +2,7 @@
 
 namespace App\Filament\Admin\Resources\Services\Schemas;
 
+use App\Filament\Admin\Resources\Concerns\SeoFields;
 use App\Platform\Builder\Registry\BuilderRegistry;
 use Filament\Forms\Components\Builder;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
@@ -42,6 +43,8 @@ class ServiceForm
                     ->default(true),
 
                 Toggle::make('is_featured'),
+
+                SeoFields::make(),
 
                 Builder::make('blocks')
                     ->blocks(BuilderRegistry::blocks())

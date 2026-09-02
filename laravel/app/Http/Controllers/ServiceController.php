@@ -28,10 +28,11 @@ class ServiceController extends Controller
 
         return view(
             'builder.service',
-            compact(
-                'service',
-                'blocks',
-            )
+            [
+                'service' => $service,
+                'blocks' => $blocks,
+                'seo' => $service,
+            ]
         );
     }
 }

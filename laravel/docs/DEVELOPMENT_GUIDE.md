@@ -888,6 +888,60 @@ SiteChrome               общий footer и CTA
 
 ---
 
+## ADR-012 — SEO на установленных пакетах
+
+**Дата:** 2026-08-31
+
+### Контекст
+
+В проекте уже подключены `ralphjsmit/laravel-seo` и `spatie/laravel-sitemap`, но они не были связаны с публичными страницами.
+
+### Принятое решение
+
+- Мета, Open Graph, Twitter Card и JSON-LD идут через `ralphjsmit/laravel-seo`.
+- `Page`, `Service` и `Project` используют `HasPublicSeo` и `getDynamicSEOData()`.
+- Редактор может переопределить Title/Description в Filament (секция SEO).
+- Sitemap строится из опубликованных Page/Service/Project и отдаётся по `/sitemap.xml`.
+- Schema.org `HomeAndConstructionBusiness` добавляется на все публичные страницы из `SiteSetting`.
+
+### Рассмотренные альтернативы
+
+* Свои meta-поля в таблицах pages/services/projects.
+* Отдельный SEO Resource в Filament.
+
+### Причины выбора
+
+Пакеты уже в `composer.json`. Не плодим вторую SEO-систему.
+
+---
+
+## ADR-013 — GEO для генеративных ИИ
+
+**Дата:** 2026-09-01
+
+### Контекст
+
+ADR-009 требует оптимизацию не только для поисковых систем, но и для генеративных ИИ. Классические meta-теги уже закрыты ADR-012.
+
+### Принятое решение
+
+- `/llms.txt` — краткий указатель компании, услуг и работ в формате llms.txt.
+- `/llms-full.txt` — полный текстовый профиль из опубликованных `Service` и `Project`.
+- Контент берётся из CMS, отдельной GEO-базы нет.
+- Schema.org дополняется `WebSite`, `Service`, `CreativeWork`, `ItemList` и `makesOffer`.
+- `robots.txt` явно разрешает GPTBot, ClaudeBot, PerplexityBot и Google-Extended.
+
+### Рассмотренные альтернативы
+
+* Отдельный API только для ИИ.
+* Статические markdown-файлы в `public/`.
+
+### Причины выбора
+
+Один источник правды — модели CMS. Файлы генерируются так же, как sitemap.
+
+---
+
 ## Работа с файлами (Media Library)
 
 ### Конфигурация

@@ -102,13 +102,17 @@ Builder страниц будет хранить только ссылки на 
 
 ✔ Компактный блок услуг на главной
 
+✔ SEO: meta, Open Graph, Schema.org, sitemap
+
+✔ GEO: llms.txt, Schema.org для ИИ
+
 ---
 
 # Следующий этап
 
-Свободные страницы «О компании» и «Контакты».
+Свободные страницы «О компании» и «Контакты» на проде. Дальше по коду — уведомления по заявкам.
 
-Контрольная точка этапа: `docs/Desire_House_CMS_ARCHITECTURE_CHECKPOINT_2.md`
+Контрольная точка этапа: `docs/Desire_House_CMS_ARCHITECTURE_CHECKPOINT_3.md`
 
 ---
 

@@ -23,9 +23,10 @@ class PageController extends Controller
             $page->blocks ?? []
         );
 
-        return view('pages.page', compact(
-            'page',
-            'blocks',
-        ));
+        return view('pages.page', [
+            'page' => $page,
+            'blocks' => $blocks,
+            'seo' => $page,
+        ]);
     }
 }

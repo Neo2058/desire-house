@@ -1,7 +1,5 @@
 @extends('layouts.app')
 
-@section('title', 'Наши работы')
-
 @section('content')
 
     @foreach($blocks as $block)
