@@ -29,6 +29,7 @@ final class InnerHeroProvider extends BaseProvider
         }
 
         $site = SiteSettingsProvider::make();
+        $settings = $site['settings'] ?? null;
         $menu = MenuProvider::make();
 
         return [
@@ -39,15 +40,15 @@ final class InnerHeroProvider extends BaseProvider
 
             'logo' => $site['logo'] ?? null,
 
-            'settings' => $site['settings'] ?? null,
+            'settings' => $settings,
 
-            'phone' => $site['settings']?->phone,
+            'phone' => $settings?->phone,
 
-            'telegram' => $site['settings']?->telegram,
+            'telegram' => $settings?->telegram,
 
-            'whatsapp' => $site['settings']?->whatsapp,
+            'whatsapp' => $settings?->whatsapp,
 
-            'email' => $site['settings']?->email,
+            'email' => $settings?->email,
 
             'menu' => $menu,
 

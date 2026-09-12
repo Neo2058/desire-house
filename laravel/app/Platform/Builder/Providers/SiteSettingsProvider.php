@@ -12,7 +12,11 @@ final class SiteSettingsProvider
         $settings = SiteSetting::first();
 
         if (! $settings) {
-            return [];
+            return [
+                'settings' => null,
+                'logo' => null,
+                'favicon' => null,
+            ];
         }
 
         $logo = null;

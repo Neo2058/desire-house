@@ -21,9 +21,8 @@ final class HeroProvider extends BaseProvider
         }
 
         $site = SiteSettingsProvider::make();
-
+        $settings = $site['settings'] ?? null;
         $menu = MenuProvider::make();
-
 
         return [
 
@@ -37,15 +36,15 @@ final class HeroProvider extends BaseProvider
 
             'favicon' => $site['favicon'] ?? null,
 
-            'settings' => $site['settings'] ?? null,
+            'settings' => $settings,
 
-            'phone' => $site['settings']?->phone,
+            'phone' => $settings?->phone,
 
-            'telegram' => $site['settings']?->telegram,
+            'telegram' => $settings?->telegram,
 
-            'whatsapp' => $site['settings']?->whatsapp,
+            'whatsapp' => $settings?->whatsapp,
 
-            'email' => $site['settings']?->email,
+            'email' => $settings?->email,
 
             'menu' => $menu,
 

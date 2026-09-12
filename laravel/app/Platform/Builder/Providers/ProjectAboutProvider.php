@@ -10,6 +10,7 @@ final class ProjectAboutProvider extends BaseProvider
     {
         $project = $model instanceof Project ? $model : null;
         $site = SiteSettingsProvider::make();
+        $settings = $site['settings'] ?? null;
         $cover = $project?->getFirstMediaUrl('cover');
 
         $project?->loadMissing('services');
@@ -20,10 +21,10 @@ final class ProjectAboutProvider extends BaseProvider
             'cover' => $cover ?: null,
             'description' => $project?->description,
             'services' => $project?->services ?? collect(),
-            'phone' => $site['settings']?->phone,
-            'telegram' => $site['settings']?->telegram,
-            'whatsapp' => $site['settings']?->whatsapp,
-            'settings' => $site['settings'] ?? null,
+            'phone' => $settings?->phone,
+            'telegram' => $settings?->telegram,
+            'whatsapp' => $settings?->whatsapp,
+            'settings' => $settings,
         ];
     }
 }

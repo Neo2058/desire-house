@@ -10,6 +10,7 @@ final class ServiceAboutProvider extends BaseProvider
     {
         $service = $model instanceof Service ? $model : null;
         $site = SiteSettingsProvider::make();
+        $settings = $site['settings'] ?? null;
         $cover = $service?->getFirstMediaUrl('cover');
 
         return [
@@ -17,10 +18,10 @@ final class ServiceAboutProvider extends BaseProvider
             'service' => $service,
             'cover' => $cover ?: null,
             'description' => $service?->description,
-            'phone' => $site['settings']?->phone,
-            'telegram' => $site['settings']?->telegram,
-            'whatsapp' => $site['settings']?->whatsapp,
-            'settings' => $site['settings'] ?? null,
+            'phone' => $settings?->phone,
+            'telegram' => $settings?->telegram,
+            'whatsapp' => $settings?->whatsapp,
+            'settings' => $settings,
         ];
     }
 }
