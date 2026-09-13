@@ -1,8 +1,13 @@
-# Desire House CMS — развёртывание и первый запуск
+# Desire House CMS — развёртывание, первый запуск и обновление
 
-Документ описывает последовательность запуска нового экземпляра Desire House
-CMS на чистом сервере. Проект использует PHP 8.3+, Laravel 13, PostgreSQL,
-Filament 5, Node.js и Vite.
+Документ описывает два сценария:
+
+1. запуск нового экземпляра Desire House CMS на чистом сервере (разделы 1–10);
+2. обновление уже работающего сайта с контентом в CMS (разделы 11–15).
+
+Проект использует PHP 8.3+, Laravel 13, PostgreSQL, Filament 5, Node.js и Vite.
+
+Срез проекта и смысл шагов: `docs/Desire_House_CMS_ARCHITECTURE_CHECKPOINT_4.md`.
 
 ## 1. Системные требования
 
@@ -239,7 +244,157 @@ php artisan test
   `/first-login/password`;
 - `.env`, `.env.testing`, `vendor` и `node_modules` не отслеживаются Git.
 
+## 11. Что в Git, а что в CMS
+
+`git pull` меняет только код. Он не затирает главную, меню, настройки сайта,
+услуги, проекты, заявки и загруженные файлы.
+
+| В Git | В PostgreSQL / `storage` |
+| --- | --- |
+| приложение, миграции, шаблоны, CSS | `pages.blocks`, услуги, проекты |
+| маршруты и провайдеры Builder | `site_settings`, `menu_items` |
+| SEO/GEO-код | таблица `seo`, медиа |
+
+Контент пропадает только от `migrate:fresh`, `db:seed`, `db:wipe`, ручного
+`DELETE` или порчи каталога `storage`.
+
+Текущий продакшен на дату контрольной точки 4.0:
+
+```text
+хост     199.189.255.204
+SSH      deeploy
+каталог  /var/www/desire-house/laravel
+ветка    services
+```
+
+Document root web-сервера должен указывать на `laravel/public`.
+
+## 12. Обновление уже работающего сервера
+
+Этот сценарий — не первый запуск. База уже есть, страницы уже заполнены,
+`.env` уже настроен. Не запускать `setup:token`, если `super_admin` уже
+существует.
+
+Работать пользователем приложения из каталога `laravel`:
+
+```bash
+ssh deeploy@199.189.255.204
+cd /var/www/desire-house/laravel
+
+git fetch origin
+git checkout services
+git pull origin services
+
+composer install --no-dev --prefer-dist --optimize-autoloader
+npm ci
+npm run build
+
+php artisan migrate --force
+php artisan storage:link
+php artisan optimize:clear
+```
+
+После миграций:
+
+1. открыть публичный сайт и `/admin`;
+2. если таблицы ролей только что появились — назначить `super_admin`
+   существующему пользователю (раздел 14);
+3. если `site_settings` пустая — сайт не должен падать; заполнить
+   **Настройки → Сайт** в админке;
+4. когда страницы открываются без 500, можно снова включить production-кеш:
+
+```bash
+php artisan config:cache
+php artisan route:cache
+php artisan view:cache
+```
+
+`php artisan optimize` допустим только после этой проверки. Если после него
+снова 500 — сразу `php artisan optimize:clear`.
+
+## 13. Порядок наполнения CMS после кода
+
+Код не создаёт продающий сайт. Контент заполняется в Filament в таком порядке,
+потому что блоки ссылаются друг на друга.
+
+1. **Настройки → Сайт** — компания, телефон, email, Telegram, WhatsApp,
+   адрес, логотип, favicon.
+2. **Медиа → Изображения** — фото для Hero, услуг, проектов, логотипа.
+3. **Контент → Услуги** — опубликованные записи со slug.
+4. **Контент → Проекты** — работы, привязка к услугам, обложка, галерея.
+5. **Настройки → Меню** — пункты шапки и подвала.
+6. **Контент → Страницы** — опубликованные `home`, `uslugi` и свободные
+   страницы («О компании», «Контакты»).
+7. Секция **SEO** в карточках страниц, услуг и проектов.
+8. Проверка заявки с публичной формы.
+
+Страницы `/uslugi/{slug}` и `/raboty/{slug}` собирают шаблоны сущности.
+Их не нужно вручную собирать блоками Builder.
+
+Пока нет опубликованной страницы со slug `home`, корневой URL после setup
+возвращает контролируемый 404. Это штатное состояние, а не ошибка деплоя.
+
+## 14. Старый администратор после появления ролей
+
+Миграция `create_permission_tables` создаёт таблицы, не роли и не назначения.
+
+Пока у пользователя нет роли `super_admin` или `panel_user`, Filament не
+пускает в панель (`User::canAccessPanel()`). Мастер `/setup` не примет
+существующий email: поле уникально.
+
+На сервере:
+
+```bash
+cd /var/www/desire-house/laravel
+php artisan tinker
+```
+
+```php
+use App\Models\User;
+use Spatie\Permission\Models\Role;
+
+User::query()->get(['id', 'name', 'email']);
+
+$role = Role::query()->firstOrCreate([
+    'name' => 'super_admin',
+    'guard_name' => 'web',
+]);
+
+$user = User::query()->where('email', '<email-старого-админа>')->firstOrFail();
+$user->assignRole($role);
+$user->must_change_password = false;
+$user->save();
+```
+
+Если пароль утерян, задать новый в той же сессии tinker и сразу сменить его
+в **Настройки → Пользователи**. Временные пароли в Git не записывать.
+
+Нового администратора на пустой базе создаёт сценарий разделов 6–8
+(`setup:token` и `/setup`), а не этот раздел.
+
+## 15. Запрещённые операции на живом сайте
+
+Не выполнять:
+
+```bash
+php artisan migrate:fresh
+php artisan migrate:fresh --seed
+php artisan db:seed
+php artisan db:wipe
+```
+
+Они уничтожают страницы, заявки, медиа-привязки и пользователей.
+
+Если после `git pull` сайт отдаёт 500:
+
+1. читать `storage/logs/laravel.log`, не запускать `migrate:fresh`;
+2. `Undefined array key "settings"` — нужен коммит `575a8b0` или новее,
+   затем `php artisan optimize:clear`;
+3. отказ во входе в `/admin` при верном пароле — раздел 14.
+
 ## Краткая последовательность команд
+
+Первый запуск на чистом сервере:
 
 ```bash
 composer install --no-dev --prefer-dist --optimize-autoloader
@@ -253,6 +408,25 @@ php artisan storage:link
 php artisan setup:token
 # Перезапустить PHP runtime
 # Открыть /setup и создать super_admin
+php artisan config:cache
+php artisan route:cache
+php artisan view:cache
+```
+
+Обновление уже работающего сервера:
+
+```bash
+git fetch origin
+git checkout services
+git pull origin services
+composer install --no-dev --prefer-dist --optimize-autoloader
+npm ci
+npm run build
+php artisan migrate --force
+php artisan storage:link
+php artisan optimize:clear
+# Проверить сайт и /admin
+# При необходимости назначить super_admin старому пользователю
 php artisan config:cache
 php artisan route:cache
 php artisan view:cache
